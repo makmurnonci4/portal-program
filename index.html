@@ -566,13 +566,29 @@
 
   document.getElementById('visiInput').addEventListener('input', e => { state.visi = e.target.value; markUnsaved(); });
 
+  // Cari tema yang cocok dengan visi tapi belum dipakai di misi/tujuan yang ada
+  function nextUnusedTheme(){
+    const used = new Set();
+    state.misi.forEach(m => { const t = matchTheme(m); if(t) used.add(t); });
+    state.tujuan.forEach(t2 => { const t = matchTheme(t2); if(t) used.add(t); });
+    const candidates = state.visi ? matchThemes(state.visi) : [];
+    return candidates.find(t => !used.has(t)) || null;
+  }
+
   document.getElementById('addMisi').addEventListener('click', () => {
-    state.misi.push(''); renderList(misiListEl, state.misi, 'misi');
+    const theme = nextUnusedTheme();
+    state.misi.push(theme ? theme.misi : '');
+    renderList(misiListEl, state.misi, 'misi');
     const l = misiListEl.querySelectorAll('.item-text'); if(l.length) l[l.length-1].focus();
     markUnsaved();
   });
   document.getElementById('addTujuan').addEventListener('click', () => {
-    state.tujuan.push(''); renderList(tujuanListEl, state.tujuan, 'tujuan');
+    // Utamakan tema yang sepadan dengan misi pada baris yang sama bila ada
+    const idx = state.tujuan.length;
+    const pairTheme = state.misi[idx] ? matchTheme(state.misi[idx]) : null;
+    const theme = pairTheme || nextUnusedTheme();
+    state.tujuan.push(theme ? theme.tujuan : '');
+    renderList(tujuanListEl, state.tujuan, 'tujuan');
     const l = tujuanListEl.querySelectorAll('.item-text'); if(l.length) l[l.length-1].focus();
     markUnsaved();
   });
@@ -741,7 +757,16 @@
   }
 
   document.getElementById('addRow').addEventListener('click', () => {
-    state.programKerja.push({ bidang:'', kegiatan:'', sasaran:'', waktu:'', pj:'', indikator:'' });
+    // Coba isi otomatis dari pasangan Misi/Tujuan pada urutan yang sama, bila belum punya baris program
+    const idx = state.programKerja.length;
+    const combined = (state.misi[idx]||'') + ' ' + (state.tujuan[idx]||'');
+    const isTataKelola = (state.misi[idx]||'').includes('transparan') || (state.misi[idx]||'').includes('akuntabel');
+    const theme = isTataKelola ? ALWAYS_PROGRAM : (matchTheme(combined) || (combined.trim() ? FALLBACK_PROGRAM : null));
+    if(theme){
+      state.programKerja.push({ bidang:theme.bidang, kegiatan:theme.kegiatan, sasaran:theme.sasaran, waktu:theme.waktu, pj:theme.pj, indikator:theme.indikator });
+    } else {
+      state.programKerja.push({ bidang:'', kegiatan:'', sasaran:'', waktu:'', pj:'', indikator:'' });
+    }
     renderProgramRows(); markUnsaved();
   });
 
@@ -843,7 +868,14 @@
   }
 
   document.getElementById('addRksRow').addEventListener('click', () => {
-    state.rks.push({ program:'', sasaran:'', sumberDana:SUMBER_DANA_OPTIONS[0], volume:1, satuan:'Kegiatan', harga:0, waktu:'', pj:'' });
+    // Coba isi otomatis dari Program Kerja pada urutan yang sama, bila belum punya baris RKS
+    const idx = state.rks.length;
+    const p = state.programKerja[idx];
+    if(p){
+      state.rks.push({ program:p.kegiatan||'', sasaran:p.sasaran||'', sumberDana:SUMBER_DANA_OPTIONS[0], volume:1, satuan:'Kegiatan', harga:0, waktu:p.waktu||'', pj:p.pj||'' });
+    } else {
+      state.rks.push({ program:'', sasaran:'', sumberDana:SUMBER_DANA_OPTIONS[0], volume:1, satuan:'Kegiatan', harga:0, waktu:'', pj:'' });
+    }
     renderRksRows(); markUnsaved();
   });
 
