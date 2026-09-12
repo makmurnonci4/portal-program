@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visi, Misi, Tujuan & Program Kerja Sekolah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F2E8;
+    --card:#FFFFFF;
+    --ink:#232722;
+    --ink-soft:#5B6058;
+    --navy:#1C3A4B;
+    --navy-deep:#12262F;
+    --gold:#A9822F;
+    --gold-soft:#E9DCB8;
+    --sage:#42624B;
+    --sage-soft:#DCE6DB;
+    --line:#DFD8C6;
+    --danger:#9C4A3B;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;line-height:1.5;
+    padding:32px 20px 80px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+
+  header.top{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:20px;
+    border-bottom:3px solid var(--navy);padding-bottom:18px;margin-bottom:20px;flex-wrap:wrap;
+  }
+  .mark{
+    width:44px;height:44px;border-radius:50%;background:var(--navy);
+    display:flex;align-items:center;justify-content:center;color:var(--gold-soft);
+    font-family:'Source Serif 4',serif;font-weight:700;font-size:15px;flex:none;
+  }
+  .titleblock{display:flex;align-items:center;gap:14px;}
+  h1{
+    font-family:'Source Serif 4',serif;font-weight:700;font-size:23px;margin:0;color:var(--navy-deep);
+  }
+  .fields-row{display:flex;gap:22px;flex-wrap:wrap;}
+  .school-field{display:flex;flex-direction:column;gap:4px;min-width:170px;}
+  .school-field label{font-size:12px;color:var(--ink-soft);}
+  .school-field input{
+    border:none;border-bottom:1.5px solid var(--line);background:transparent;
+    font-family:'Source Serif 4',serif;font-size:15px;color:var(--navy-deep);
+    padding:4px 2px;outline:none;
+  }
+  .school-field input:focus{border-bottom-color:var(--gold);}
+
+  /* ---- tabs ---- */
+  .tabs{display:flex;gap:6px;margin-bottom:24px;border-bottom:1px solid var(--line);}
+  .tab-btn{
+    background:none;border:none;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:var(--ink-soft);
+    padding:11px 6px;margin-right:22px;position:relative;
+  }
+  .tab-btn.active{color:var(--navy-deep);}
+  .tab-btn.active::after{
+    content:'';position:absolute;left:0;right:0;bottom:-1px;height:2.5px;background:var(--gold);
+  }
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  section{margin-bottom:26px;}
+  .section-head{
+    display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px;
+  }
+  .section-head h2{
+    font-family:'Source Serif 4',serif;font-size:17px;font-weight:600;color:var(--navy);margin:0;
+  }
+  .hint{font-size:12.5px;color:var(--ink-soft);}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+
+  textarea.visi-input{
+    width:100%;border:none;resize:vertical;min-height:96px;
+    font-family:'Source Serif 4',serif;font-size:17px;line-height:1.55;
+    color:var(--navy-deep);outline:none;background:transparent;
+  }
+  textarea.visi-input::placeholder{color:#9AA3A0;font-family:'Inter',sans-serif;font-size:15px;}
+  .visi-actions{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin-top:12px;padding-top:12px;border-top:1px solid var(--line);
+  }
+
+  .btn{
+    border:1px solid var(--navy);background:var(--navy);color:#fff;
+    padding:9px 16px;border-radius:7px;font-size:13.5px;font-weight:500;cursor:pointer;
+    font-family:'Inter',sans-serif;transition:background .15s ease, transform .05s ease;
+  }
+  .btn:hover{background:var(--navy-deep);}
+  .btn:active{transform:scale(.98);}
+  .btn.secondary{background:transparent;color:var(--navy);}
+  .btn.secondary:hover{background:var(--sage-soft);}
+  .btn.ghost{background:transparent;border-color:var(--line);color:var(--ink-soft);}
+  .btn.ghost:hover{border-color:var(--navy);color:var(--navy);}
+  .btn.small{padding:6px 11px;font-size:12.5px;border-radius:6px;}
+  .btn:disabled{opacity:.45;cursor:not-allowed;}
+  input[type=file]{display:none;}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media (max-width:720px){.cols{grid-template-columns:1fr;}}
+
+  .list-card{border-top:4px solid var(--sage);}
+  .list-card.tujuan{border-top-color:var(--gold);}
+  .item-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);}
+  .item-row:last-of-type{border-bottom:none;}
+  .item-num{
+    width:22px;flex:none;font-family:'Source Serif 4',serif;font-weight:600;color:var(--sage);
+    padding-top:8px;font-size:14px;
+  }
+  .list-card.tujuan .item-num{color:var(--gold);}
+  .item-text{
+    flex:1;border:none;background:transparent;resize:none;
+    font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.5;color:var(--ink);
+    outline:none;padding:7px 0;overflow:hidden;
+  }
+  .item-text::placeholder{color:#AEB4AC;}
+  .item-del{
+    flex:none;background:none;border:none;color:#B7ADA0;cursor:pointer;
+    font-size:16px;padding:6px 4px;line-height:1;margin-top:2px;
+  }
+  .item-del:hover{color:var(--danger);}
+  .empty-note{color:var(--ink-soft);font-size:13.5px;padding:10px 0;font-style:italic;}
+  .add-item{
+    margin-top:10px;background:none;border:1px dashed var(--line);color:var(--ink-soft);
+    padding:8px 10px;border-radius:7px;font-size:13px;cursor:pointer;width:100%;
+    text-align:left;font-family:'Inter',sans-serif;
+  }
+  .add-item:hover{border-color:var(--sage);color:var(--sage);}
+  .list-card.tujuan .add-item:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ---- ringkasan (dipakai di tab program kerja) ---- */
+  .vm-card{border-left:4px solid var(--gold);}
+  .vm-block{margin-bottom:12px;}
+  .vm-block:last-child{margin-bottom:0;}
+  .vm-block h3{
+    font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;text-transform:uppercase;
+    letter-spacing:.04em;color:var(--gold);margin:0 0 5px;
+  }
+  .vm-block p{margin:0;font-family:'Source Serif 4',serif;font-size:15px;color:var(--navy-deep);}
+  .vm-block ol{margin:0;padding-left:18px;font-size:14px;color:var(--ink);}
+  .vm-block li{margin-bottom:4px;}
+
+  /* ---- tabel program kerja ---- */
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card);}
+  table.pk-table{width:100%;border-collapse:collapse;min-width:920px;}
+  .pk-table thead th{
+    text-align:left;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft);
+    background:var(--sage-soft);padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;
+  }
+  .pk-table td{border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top;}
+  .pk-table tr:last-child td{border-bottom:none;}
+  .pk-table td.num{
+    font-family:'Source Serif 4',serif;font-weight:600;color:var(--sage);padding-top:12px;width:26px;
+  }
+  .cell-input{
+    width:100%;border:none;background:transparent;resize:none;
+    font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);
+    outline:none;padding:4px 2px;line-height:1.45;overflow:hidden;
+  }
+  .cell-input.wide{min-width:210px;}
+  .cell-input.mid{min-width:150px;}
+  .cell-input.narrow{min-width:110px;}
+  .cell-input::placeholder{color:#AEB4AC;}
+  td.del-col{width:34px;text-align:center;}
+  .table-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:12px;}
+
+  footer.actions{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
+  }
+  .status{font-size:12.5px;color:var(--ink-soft);}
+  .status.saved{color:var(--sage);}
+  .actions-right{display:flex;gap:8px;flex-wrap:wrap;}
+
+  .pk-table td.money{text-align:right;font-family:'Inter',sans-serif;white-space:nowrap;}
+  .cell-input.money{text-align:right;min-width:120px;}
+  .pk-table tfoot td{font-weight:600;font-family:'Inter',sans-serif;background:var(--sage-soft);padding:10px 12px;}
+  .pk-table tfoot td.money{text-align:right;color:var(--navy-deep);}
+  select.cell-input{appearance:auto;-webkit-appearance:auto;cursor:pointer;}
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(10px);
+    background:var(--navy-deep);color:#fff;padding:10px 18px;border-radius:8px;font-size:13.5px;
+    opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;z-index:10;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="titleblock">
+      <div class="mark">VMP</div>
+      <h1>Visi, Misi, Tujuan &amp; Program Kerja Sekolah</h1>
+    </div>
+    <div class="fields-row">
+      <div class="school-field">
+        <label for="namaSekolah">Nama Sekolah</label>
+        <input id="namaSekolah" type="text" placeholder="Nama sekolah">
+      </div>
+      <div class="school-field">
+        <label for="tahunAjaran">Tahun Ajaran</label>
+        <input id="tahunAjaran" type="text" placeholder="Contoh: 2026/2027">
+      </div>
+      <div class="school-field">
+        <label for="kepsek">Kepala Sekolah</label>
+        <input id="kepsek" type="text" placeholder="Nama kepala sekolah">
+      </div>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="tab-vm">Visi, Misi &amp; Tujuan</button>
+    <button class="tab-btn" data-tab="tab-pk">Program Kerja</button>
+    <button class="tab-btn" data-tab="tab-rks">RKS &amp; RKAS</button>
+  </div>
+
+  <!-- ===================== TAB: VISI MISI TUJUAN ===================== -->
+  <div class="tab-panel active" id="tab-vm">
+
+    <section>
+      <div class="section-head">
+        <h2>Visi</h2>
+        <span class="hint">Tulis, tempel, atau impor visi sekolah</span>
+      </div>
+      <div class="card">
+        <textarea id="visiInput" class="visi-input" placeholder="Contoh: Terwujudnya peserta didik yang beriman, berakhlak mulia, unggul dalam prestasi, kreatif, dan peduli lingkungan."></textarea>
+        <div class="visi-actions">
+          <button class="btn secondary small" id="btnImport">Impor dari file (.txt/.docx/.xlsx/.pdf)</button>
+          <input type="file" id="fileInput" accept=".txt,.docx,.xlsx,.xls,.csv,.pdf">
+          <button class="btn small" id="btnGenerateVm">Isi Misi &amp; Tujuan Otomatis</button>
+          <span class="hint">Berdasarkan kata kunci dalam visi</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="cols">
+      <section>
+        <div class="section-head"><h2>Misi</h2></div>
+        <div class="card list-card">
+          <div id="misiList"></div>
+          <button class="add-item" id="addMisi">+ Tambah pernyataan misi</button>
+        </div>
+      </section>
+      <section>
+        <div class="section-head"><h2>Tujuan</h2></div>
+        <div class="card list-card tujuan">
+          <div id="tujuanList"></div>
+          <button class="add-item" id="addTujuan">+ Tambah tujuan</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ===================== TAB: PROGRAM KERJA ===================== -->
+  <div class="tab-panel" id="tab-pk">
+
+    <section>
+      <div class="section-head"><h2>Ringkasan Visi, Misi &amp; Tujuan</h2></div>
+      <div class="card vm-card" id="vmSummary"></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Program Kerja</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn secondary small" id="addRow">+ Tambah baris</button>
+          <button class="btn small" id="btnGeneratePk">Buat Program Kerja Otomatis</button>
+        </div>
+      </div>
+      <span class="hint">Dibuat otomatis dari setiap poin Misi &amp; Tujuan pada tab sebelumnya</span>
+      <div style="height:10px;"></div>
+      <div class="table-scroll">
+        <table class="pk-table">
+          <thead>
+            <tr>
+              <th></th><th>Bidang</th><th>Program / Kegiatan</th><th>Sasaran</th>
+              <th>Waktu Pelaksanaan</th><th>Penanggung Jawab</th><th>Indikator Keberhasilan</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="pkBody"></tbody>
+        </table>
+        <div id="pkEmpty" class="empty-note" style="display:none;">Belum ada program kerja. Klik "Buat Program Kerja Otomatis" atau tambah baris manual.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== TAB: RKS & RKAS ===================== -->
+  <div class="tab-panel" id="tab-rks">
+
+    <section>
+      <div class="section-head">
+        <h2>RKS &amp; RKAS</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn secondary small" id="addRksRow">+ Tambah baris</button>
+          <button class="btn small" id="btnGenerateRks">Buat RKS/RKAS Otomatis</button>
+        </div>
+      </div>
+      <span class="hint">Rencana Kerja Sekolah (RKS) &amp; Rencana Kegiatan dan Anggaran Sekolah (RKAS) dibuat otomatis dari Program Kerja yang sudah final pada tab sebelumnya — isi Volume &amp; Harga Satuan untuk menghitung anggaran per kegiatan</span>
+      <div style="height:10px;"></div>
+      <div class="table-scroll">
+        <table class="pk-table">
+          <thead>
+            <tr>
+              <th></th><th>Program / Kegiatan</th><th>Sasaran</th><th>Sumber Dana</th>
+              <th>Volume</th><th>Satuan</th><th>Harga Satuan (Rp)</th><th>Jumlah (Rp)</th>
+              <th>Waktu Pelaksanaan</th><th>Penanggung Jawab</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="rksBody"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7" style="text-align:right;">Total Anggaran</td>
+              <td class="money" id="rksTotal">Rp 0</td>
+              <td colspan="3"></td>
+            </tr>
+          </tfoot>
+        </table>
+        <div id="rksEmpty" class="empty-note" style="display:none;">Belum ada RKS/RKAS. Klik "Buat RKS/RKAS Otomatis" atau tambah baris manual.</div>
+        <div class="table-foot">
+          <span class="hint">Unduh tabel RKS/RKAS di atas sebagai file siap cetak atau siap edit</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn secondary small" id="btnDownloadRksPdf">Unduh PDF</button>
+            <button class="btn secondary small" id="btnDownloadRksExcel">Unduh Excel</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="actions">
+    <span class="status" id="statusText">Belum disimpan</span>
+    <div class="actions-right">
+      <button class="btn ghost small" id="btnCopy">Salin Teks</button>
+      <button class="btn ghost small" id="btnDownload">Unduh .txt</button>
+      <button class="btn ghost small" id="btnResetAll" style="color:#b42318;">Hapus Semua</button>
+      <button class="btn small" id="btnSave">Simpan</button>
+    </div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function(){
+  const STORAGE_KEY = 'perencanaan-sekolah:data';
+
+  const state = {
+    namaSekolah:'', tahunAjaran:'', kepsek:'',
+    visi:'', misi:[], tujuan:[],
+    programKerja: [],   // { bidang, kegiatan, sasaran, waktu, pj, indikator }
+    rks: []             // { program, sasaran, sumberDana, volume, satuan, harga, waktu, pj }
+  };
+
+  // ---------- kamus tema: visi -> misi/tujuan ----------
+  const THEMES = [
+    { kw:['iman','taqwa','takwa','religius','beriman','bertakwa','agama'],
+      misi:'Menumbuhkan keimanan dan ketakwaan peserta didik melalui pembiasaan ibadah dan penguatan nilai-nilai keagamaan dalam kehidupan sehari-hari.',
+      tujuan:'Peserta didik memiliki keimanan dan ketakwaan yang kuat serta mengamalkan nilai-nilai agama dalam kehidupan sehari-hari.',
+      bidang:'Keagamaan', kegiatan:'Pembiasaan salat berjamaah, tadarus, dan peringatan hari besar keagamaan',
+      sasaran:'Seluruh peserta didik dan guru', waktu:'Setiap hari / sesuai kalender keagamaan',
+      pj:'Guru PAI', indikator:'Meningkatnya kedisiplinan ibadah dan partisipasi kegiatan keagamaan' },
+    { kw:['akhlak','karakter','budi pekerti','moral','berkarakter'],
+      misi:'Membentuk karakter dan akhlak mulia peserta didik melalui keteladanan, pembiasaan, dan penguatan pendidikan karakter di seluruh kegiatan sekolah.',
+      tujuan:'Peserta didik tumbuh menjadi pribadi berkarakter, berakhlak mulia, dan bertanggung jawab dalam bersikap dan bertindak.',
+      bidang:'Kesiswaan & Karakter', kegiatan:'Penguatan pendidikan karakter melalui pembiasaan, keteladanan, dan bimbingan konseling',
+      sasaran:'Seluruh peserta didik', waktu:'Sepanjang tahun ajaran',
+      pj:'Wakil Kepala Sekolah Kesiswaan', indikator:'Menurunnya pelanggaran tata tertib dan meningkatnya sikap positif peserta didik' },
+    { kw:['unggul','prestasi','akademik','berprestasi','mutu','kualitas','cerdas'],
+      misi:'Menyelenggarakan pembelajaran bermutu yang berorientasi pada pencapaian prestasi akademik peserta didik secara optimal.',
+      tujuan:'Meningkatnya prestasi akademik peserta didik sesuai dengan potensi dan minat masing-masing.',
+      bidang:'Kurikulum & Akademik', kegiatan:'Pengembangan pembelajaran, pengayaan, dan bimbingan kompetisi/ujian',
+      sasaran:'Seluruh peserta didik', waktu:'Setiap semester',
+      pj:'Wakil Kepala Sekolah Kurikulum', indikator:'Meningkatnya rata-rata nilai dan jumlah prestasi akademik' },
+    { kw:['kreatif','inovatif','inovasi','kreativitas'],
+      misi:'Mengembangkan budaya berpikir kreatif dan inovatif peserta didik melalui pembelajaran yang menantang dan berbasis proyek.',
+      tujuan:'Peserta didik mampu berpikir kreatif, inovatif, dan mampu menyelesaikan masalah dengan solusi yang orisinal.',
+      bidang:'Inovasi Pembelajaran', kegiatan:'Pelaksanaan pembelajaran berbasis proyek dan pengembangan kreativitas peserta didik',
+      sasaran:'Seluruh peserta didik dan guru', waktu:'Setiap semester',
+      pj:'Tim Pengembang Kurikulum', indikator:'Bertambahnya karya kreatif/inovatif peserta didik' },
+    { kw:['teknologi','digital','literasi digital','informasi'],
+      misi:'Mengintegrasikan pemanfaatan teknologi informasi dan komunikasi dalam proses pembelajaran dan tata kelola sekolah.',
+      tujuan:'Peserta didik memiliki kecakapan digital dan mampu memanfaatkan teknologi secara bijak dan bertanggung jawab.',
+      bidang:'Sarana & Teknologi Informasi', kegiatan:'Pemanfaatan TIK dalam pembelajaran dan pelatihan literasi digital',
+      sasaran:'Guru dan peserta didik', waktu:'Sepanjang tahun ajaran',
+      pj:'Koordinator TIK', indikator:'Meningkatnya penggunaan TIK dalam pembelajaran dan tata kelola sekolah' },
+    { kw:['lingkungan','adiwiyata','hijau','ramah lingkungan'],
+      misi:'Menumbuhkan kepedulian dan tanggung jawab peserta didik terhadap kelestarian lingkungan melalui program sekolah berbudaya lingkungan.',
+      tujuan:'Terwujudnya warga sekolah yang peduli, cinta, dan berperan aktif dalam menjaga kelestarian lingkungan.',
+      bidang:'Lingkungan Hidup', kegiatan:'Program sekolah hijau, pengelolaan sampah, dan penghijauan lingkungan sekolah',
+      sasaran:'Seluruh warga sekolah', waktu:'Sepanjang tahun ajaran',
+      pj:'Koordinator Adiwiyata', indikator:'Terwujudnya lingkungan sekolah yang bersih, hijau, dan sehat' },
+    { kw:['budaya','berbudaya','kearifan lokal','nasionalis','cinta tanah air'],
+      misi:'Melestarikan dan mengembangkan nilai-nilai budaya bangsa serta kearifan lokal dalam kehidupan sekolah.',
+      tujuan:'Peserta didik memiliki kecintaan terhadap budaya bangsa dan mampu melestarikan kearifan lokal.',
+      bidang:'Budaya & Kearifan Lokal', kegiatan:'Pentas seni budaya, muatan lokal, dan peringatan hari besar nasional',
+      sasaran:'Seluruh peserta didik', waktu:'Sesuai kalender akademik',
+      pj:'Guru Seni Budaya/Mulok', indikator:'Terselenggaranya kegiatan budaya secara rutin' },
+    { kw:['disiplin','tertib'],
+      misi:'Menanamkan sikap disiplin dan tanggung jawab peserta didik melalui penerapan tata tertib sekolah secara konsisten.',
+      tujuan:'Terbentuknya peserta didik yang disiplin, tertib, dan bertanggung jawab dalam menjalankan tugas dan kewajibannya.',
+      bidang:'Kesiswaan & Ketertiban', kegiatan:'Penegakan tata tertib sekolah dan pembinaan kedisiplinan peserta didik',
+      sasaran:'Seluruh peserta didik', waktu:'Sepanjang tahun ajaran',
+      pj:'Guru BK/Kesiswaan', indikator:'Menurunnya jumlah pelanggaran tata tertib sekolah' },
+    { kw:['global','kompetitif','bersaing','internasional','berdaya saing'],
+      misi:'Menyiapkan peserta didik agar memiliki daya saing global melalui pembelajaran yang berwawasan luas dan berstandar mutu.',
+      tujuan:'Peserta didik mampu bersaing dan beradaptasi di tingkat nasional maupun global.',
+      bidang:'Kerja Sama & Daya Saing', kegiatan:'Keikutsertaan dalam kompetisi tingkat regional, nasional, dan internasional',
+      sasaran:'Peserta didik berpotensi', waktu:'Sesuai jadwal kompetisi',
+      pj:'Wakil Kepala Sekolah Humas', indikator:'Bertambahnya keikutsertaan dan prestasi di luar sekolah' },
+    { kw:['literasi','gemar membaca','minat baca'],
+      misi:'Membudayakan gerakan literasi sekolah untuk menumbuhkan minat baca dan kemampuan berpikir kritis peserta didik.',
+      tujuan:'Peserta didik memiliki budaya literasi yang tinggi serta mampu berpikir kritis dan analitis.',
+      bidang:'Literasi', kegiatan:'Gerakan Literasi Sekolah, pojok baca kelas, dan lomba literasi',
+      sasaran:'Seluruh peserta didik', waktu:'Setiap minggu',
+      pj:'Koordinator Literasi/Pustakawan', indikator:'Meningkatnya minat baca dan kunjungan perpustakaan' },
+    { kw:['wirausaha','kewirausahaan','mandiri','entrepreneur'],
+      misi:'Membekali peserta didik dengan jiwa kewirausahaan dan kemandirian melalui pembelajaran kecakapan hidup.',
+      tujuan:'Peserta didik memiliki jiwa kewirausahaan, kemandirian, dan keterampilan hidup yang bermanfaat bagi masa depannya.',
+      bidang:'Kecakapan Hidup & Kewirausahaan', kegiatan:'Pelatihan keterampilan dan praktik kewirausahaan peserta didik',
+      sasaran:'Peserta didik kelas atas', waktu:'Setiap semester',
+      pj:'Guru Prakarya/Kewirausahaan', indikator:'Terlaksananya praktik kewirausahaan peserta didik' },
+    { kw:['sehat','jasmani','olahraga','sportif'],
+      misi:'Mengembangkan potensi jasmani dan pola hidup sehat peserta didik melalui kegiatan olahraga dan pembinaan kesehatan sekolah.',
+      tujuan:'Peserta didik memiliki kondisi fisik yang sehat dan menerapkan pola hidup sehat dalam kesehariannya.',
+      bidang:'Kesehatan & Olahraga', kegiatan:'Kegiatan UKS, senam bersama, dan pembinaan cabang olahraga',
+      sasaran:'Seluruh warga sekolah', waktu:'Setiap minggu',
+      pj:'Guru PJOK/Pembina UKS', indikator:'Meningkatnya kebugaran dan kesehatan warga sekolah' },
+    { kw:['gotong royong','peduli sosial','kepedulian','kerja sama','kolaborasi','toleransi'],
+      misi:'Menumbuhkan sikap gotong royong, kerja sama, dan kepedulian sosial peserta didik dalam kehidupan bermasyarakat.',
+      tujuan:'Peserta didik memiliki jiwa sosial yang tinggi, mampu bekerja sama, dan peduli terhadap sesama.',
+      bidang:'Hubungan Sosial', kegiatan:'Kegiatan gotong royong, bakti sosial, dan kerja sama antarwarga sekolah',
+      sasaran:'Seluruh warga sekolah', waktu:'Sesuai kalender kegiatan',
+      pj:'Wakil Kepala Sekolah Humas', indikator:'Terlaksananya kegiatan sosial secara rutin' },
+  ];
+  const ALWAYS_MISI = 'Melaksanakan pengelolaan sekolah yang transparan, partisipatif, dan akuntabel dengan melibatkan seluruh warga sekolah dan masyarakat.';
+  const ALWAYS_TUJUAN = 'Terwujudnya tata kelola sekolah yang transparan, partisipatif, dan akuntabel sesuai standar nasional pendidikan.';
+  const ALWAYS_PROGRAM = { bidang:'Manajemen & Tata Kelola', kegiatan:'Penyusunan RKS/RKAS, rapat evaluasi berkala, dan pelibatan komite sekolah',
+    sasaran:'Kepala sekolah, guru, dan komite sekolah', waktu:'Setiap awal dan akhir semester',
+    pj:'Kepala Sekolah', indikator:'Tersusunnya dokumen perencanaan dan laporan sekolah tepat waktu' };
+  const FALLBACK_MISI = 'Menyelenggarakan proses pendidikan yang berkualitas untuk mewujudkan visi sekolah secara menyeluruh.';
+  const FALLBACK_TUJUAN = 'Terwujudnya visi sekolah melalui proses pendidikan yang bermutu dan berkelanjutan.';
+  const FALLBACK_PROGRAM = { bidang:'Umum', kegiatan:'Kegiatan pendukung pencapaian misi dan tujuan sekolah',
+    sasaran:'Seluruh warga sekolah', waktu:'Sepanjang tahun ajaran',
+    pj:'Tim Pelaksana', indikator:'Terlaksananya kegiatan sesuai rencana' };
+
+  function matchThemes(text){
+    const low = text.toLowerCase();
+    return THEMES.filter(t => t.kw.some(k => low.includes(k)));
+  }
+  function matchTheme(text){
+    const low = text.toLowerCase();
+    return THEMES.find(t => t.kw.some(k => low.includes(k)));
+  }
+
+  function generateVmFromVisi(visiText){
+    const matched = matchThemes(visiText);
+    if(matched.length === 0){
+      return { misi:[FALLBACK_MISI, ALWAYS_MISI], tujuan:[FALLBACK_TUJUAN, ALWAYS_TUJUAN] };
+    }
+    return {
+      misi: matched.map(t=>t.misi).concat([ALWAYS_MISI]),
+      tujuan: matched.map(t=>t.tujuan).concat([ALWAYS_TUJUAN])
+    };
+  }
+
+  function generateProgramFromMisi(){
+    const n = Math.max(state.misi.length, state.tujuan.length);
+    const rows = [];
+    for(let i=0;i<n;i++){
+      const combined = (state.misi[i]||'') + ' ' + (state.tujuan[i]||'');
+      const theme = matchTheme(combined);
+      const src = theme || (combined.trim() ? FALLBACK_PROGRAM : null);
+      if(!src) continue;
+      // pakai baris "selalu ada" bila cocok dengan misi tata kelola
+      const useAlways = (state.misi[i]||'').includes('transparan') || (state.misi[i]||'').includes('akuntabel');
+      const s = useAlways ? ALWAYS_PROGRAM : src;
+      rows.push({ bidang:s.bidang, kegiatan:s.kegiatan, sasaran:s.sasaran, waktu:s.waktu, pj:s.pj, indikator:s.indikator });
+    }
+    return rows;
+  }
+
+  // ---------- RKS/RKAS: dibuat dari Program Kerja yang sudah final ----------
+  const SUMBER_DANA_OPTIONS = ['BOS Reguler','BOSDA','Komite Sekolah','APBD','Lainnya'];
+  function generateRksFromProgram(){
+    return state.programKerja.map(p => ({
+      program: p.kegiatan || '',
+      sasaran: p.sasaran || '',
+      sumberDana: 'BOS Reguler',
+      volume: 1,
+      satuan: 'Kegiatan',
+      harga: 0,
+      waktu: p.waktu || '',
+      pj: p.pj || '',
+    }));
+  }
+
+  // ================= TAB SWITCHING =================
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      if(btn.dataset.tab === 'tab-pk') renderVmSummary();
+      if(btn.dataset.tab === 'tab-rks') renderRksRows();
+    });
+  });
+
+  // ================= AUTOSIZE HELPER =================
+  function autosize(el){ el.style.height='auto'; el.style.height=el.scrollHeight+'px'; }
+
+  // ================= VISI / MISI / TUJUAN RENDER =================
+  const misiListEl = document.getElementById('misiList');
+  const tujuanListEl = document.getElementById('tujuanList');
+
+  function renderList(containerEl, arr, kind){
+    containerEl.innerHTML = '';
+    if(arr.length === 0){
+      const p = document.createElement('div');
+      p.className = 'empty-note';
+      p.textContent = kind === 'misi' ? 'Belum ada misi. Isi otomatis dari visi, atau tambah manual.' : 'Belum ada tujuan. Isi otomatis dari visi, atau tambah manual.';
+      containerEl.appendChild(p);
+      return;
+    }
+    arr.forEach((val, idx) => {
+      const row = document.createElement('div');
+      row.className = 'item-row';
+      const num = document.createElement('div');
+      num.className = 'item-num';
+      num.textContent = (idx+1) + '.';
+      const ta = document.createElement('textarea');
+      ta.className = 'item-text';
+      ta.rows = 1;
+      ta.value = val;
+      ta.placeholder = kind === 'misi' ? 'Tulis pernyataan misi…' : 'Tulis tujuan…';
+      ta.addEventListener('input', () => { arr[idx]=ta.value; autosize(ta); markUnsaved(); });
+      const del = document.createElement('button');
+      del.className = 'item-del'; del.title='Hapus'; del.textContent='✕';
+      del.addEventListener('click', () => { arr.splice(idx,1); renderList(containerEl, arr, kind); markUnsaved(); });
+      row.appendChild(num); row.appendChild(ta); row.appendChild(del);
+      containerEl.appendChild(row);
+      requestAnimationFrame(()=>autosize(ta));
+    });
+  }
+
+  function renderVmInputs(){
+    document.getElementById('visiInput').value = state.visi;
+    renderList(misiListEl, state.misi, 'misi');
+    renderList(tujuanListEl, state.tujuan, 'tujuan');
+  }
+
+  document.getElementById('visiInput').addEventListener('input', e => { state.visi = e.target.value; markUnsaved(); });
+
+  document.getElementById('addMisi').addEventListener('click', () => {
+    state.misi.push(''); renderList(misiListEl, state.misi, 'misi');
+    const l = misiListEl.querySelectorAll('.item-text'); if(l.length) l[l.length-1].focus();
+    markUnsaved();
+  });
+  document.getElementById('addTujuan').addEventListener('click', () => {
+    state.tujuan.push(''); renderList(tujuanListEl, state.tujuan, 'tujuan');
+    const l = tujuanListEl.querySelectorAll('.item-text'); if(l.length) l[l.length-1].focus();
+    markUnsaved();
+  });
+
+  document.getElementById('btnGenerateVm').addEventListener('click', () => {
+    const visi = state.visi.trim();
+    if(!visi){ showToast('Isi visi terlebih dahulu.'); return; }
+    const proceed = (state.misi.length===0 && state.tujuan.length===0)
+      || confirm('Misi/Tujuan yang sudah ada akan diganti dengan hasil otomatis. Lanjutkan?');
+    if(!proceed) return;
+    const { misi, tujuan } = generateVmFromVisi(visi);
+    state.misi = misi; state.tujuan = tujuan;
+    renderVmInputs();
+    markUnsaved();
+    showToast('Misi & tujuan terisi otomatis dari visi.');
+  });
+
+  document.getElementById('btnImport').addEventListener('click', () => document.getElementById('fileInput').click());
+  document.getElementById('fileInput').addEventListener('change', (e) => {
+    const file = e.target.files[0]; if(!file) return;
+    const nameLower = file.name.toLowerCase();
+
+    function finishImport(text, sourceLabel){
+      state.visi = String(text || '').trim();
+      document.getElementById('visiInput').value = state.visi;
+      markUnsaved();
+      if(state.visi){
+        showToast('Visi berhasil diimpor dari file ' + sourceLabel + '.');
+      } else {
+        showToast('File ' + sourceLabel + ' dibaca, tapi tidak ditemukan teks di dalamnya.');
+      }
+    }
+
+    // ---- Word (.docx) ----
+    if(nameLower.endsWith('.docx')){
+      if(!window.mammoth){
+        showToast('Gagal memuat pustaka pembaca .docx. Periksa koneksi internet dan coba lagi.');
+        e.target.value = ''; return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        mammoth.extractRawText({ arrayBuffer: reader.result })
+          .then(result => finishImport(result.value, '.docx'))
+          .catch(() => showToast('Gagal membaca isi file .docx.'));
+      };
+      reader.onerror = () => showToast('Gagal membaca file.');
+      reader.readAsArrayBuffer(file);
+      e.target.value = ''; return;
+    }
+
+    // ---- Excel (.xlsx / .xls / .csv) ----
+    if(nameLower.endsWith('.xlsx') || nameLower.endsWith('.xls') || nameLower.endsWith('.csv')){
+      if(!window.XLSX){
+        showToast('Gagal memuat pustaka pembaca Excel. Periksa koneksi internet dan coba lagi.');
+        e.target.value = ''; return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        try{
+          const wb = XLSX.read(reader.result, { type:'array' });
+          const lines = [];
+          wb.SheetNames.forEach(sheetName => {
+            const rows = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], { header:1, blankrows:false });
+            rows.forEach(row => {
+              row.forEach(cellVal => {
+                if(cellVal !== undefined && cellVal !== null && String(cellVal).trim() !== ''){
+                  lines.push(String(cellVal).trim());
+                }
+              });
+            });
+          });
+          finishImport(lines.join('\n'), '.xlsx/.xls/.csv');
+        } catch(err){
+          showToast('Gagal membaca isi file Excel.');
+        }
+      };
+      reader.onerror = () => showToast('Gagal membaca file.');
+      reader.readAsArrayBuffer(file);
+      e.target.value = ''; return;
+    }
+
+    // ---- PDF ----
+    if(nameLower.endsWith('.pdf')){
+      if(!window.pdfjsLib){
+        showToast('Gagal memuat pustaka pembaca PDF. Periksa koneksi internet dan coba lagi.');
+        e.target.value = ''; return;
+      }
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try{
+          const pdf = await pdfjsLib.getDocument({ data: reader.result }).promise;
+          const pageTexts = [];
+          for(let i=1; i<=pdf.numPages; i++){
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            pageTexts.push(content.items.map(it => it.str).join(' '));
+          }
+          finishImport(pageTexts.join('\n\n'), '.pdf');
+        } catch(err){
+          showToast('Gagal membaca isi file PDF.');
+        }
+      };
+      reader.onerror = () => showToast('Gagal membaca file.');
+      reader.readAsArrayBuffer(file);
+      e.target.value = ''; return;
+    }
+
+    // ---- teks polos (.txt) sebagai bawaan ----
+    const reader = new FileReader();
+    reader.onload = () => finishImport(reader.result, '.txt');
+    reader.onerror = () => showToast('Gagal membaca file.');
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+
+  // ================= RINGKASAN (tab program kerja) =================
+  function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+  function renderVmSummary(){
+    const el = document.getElementById('vmSummary');
+    const hasData = state.visi || state.misi.length || state.tujuan.length;
+    if(!hasData){
+      el.innerHTML = '<div class="empty-note">Isi Visi, Misi, dan Tujuan pada tab "Visi, Misi & Tujuan" terlebih dahulu.</div>';
+      return;
+    }
+    let html = '';
+    html += '<div class="vm-block"><h3>Visi</h3><p>'+escapeHtml(state.visi||'(belum diisi)')+'</p></div>';
+    html += '<div class="vm-block"><h3>Misi</h3>' + (state.misi.length ? '<ol>'+state.misi.map(m=>'<li>'+escapeHtml(m)+'</li>').join('')+'</ol>' : '<div class="empty-note">(belum diisi)</div>') + '</div>';
+    html += '<div class="vm-block"><h3>Tujuan</h3>' + (state.tujuan.length ? '<ol>'+state.tujuan.map(t=>'<li>'+escapeHtml(t)+'</li>').join('')+'</ol>' : '<div class="empty-note">(belum diisi)</div>') + '</div>';
+    el.innerHTML = html;
+  }
+
+  // ================= PROGRAM KERJA TABLE =================
+  const pkBody = document.getElementById('pkBody');
+  const pkEmpty = document.getElementById('pkEmpty');
+
+  function cell(value, placeholder, cls, onChange){
+    const ta = document.createElement('textarea');
+    ta.className = 'cell-input ' + cls;
+    ta.rows = 1; ta.value = value; ta.placeholder = placeholder;
+    ta.addEventListener('input', () => { onChange(ta.value); autosize(ta); markUnsaved(); });
+    requestAnimationFrame(()=>autosize(ta));
+    return ta;
+  }
+
+  function renderProgramRows(){
+    pkBody.innerHTML = '';
+    pkEmpty.style.display = state.programKerja.length ? 'none' : 'block';
+    state.programKerja.forEach((row, idx) => {
+      const tr = document.createElement('tr');
+      const tdNum = document.createElement('td'); tdNum.className='num'; tdNum.textContent=(idx+1);
+      tr.appendChild(tdNum);
+      const tdBidang = document.createElement('td'); tdBidang.appendChild(cell(row.bidang,'Bidang','mid',v=>row.bidang=v)); tr.appendChild(tdBidang);
+      const tdKeg = document.createElement('td'); tdKeg.appendChild(cell(row.kegiatan,'Program / kegiatan','wide',v=>row.kegiatan=v)); tr.appendChild(tdKeg);
+      const tdSas = document.createElement('td'); tdSas.appendChild(cell(row.sasaran,'Sasaran','mid',v=>row.sasaran=v)); tr.appendChild(tdSas);
+      const tdWak = document.createElement('td'); tdWak.appendChild(cell(row.waktu,'Waktu','narrow',v=>row.waktu=v)); tr.appendChild(tdWak);
+      const tdPj = document.createElement('td'); tdPj.appendChild(cell(row.pj,'Penanggung jawab','narrow',v=>row.pj=v)); tr.appendChild(tdPj);
+      const tdInd = document.createElement('td'); tdInd.appendChild(cell(row.indikator,'Indikator keberhasilan','wide',v=>row.indikator=v)); tr.appendChild(tdInd);
+      const tdDel = document.createElement('td'); tdDel.className='del-col';
+      const del = document.createElement('button'); del.className='item-del'; del.title='Hapus baris'; del.textContent='✕';
+      del.addEventListener('click', () => { state.programKerja.splice(idx,1); renderProgramRows(); markUnsaved(); });
+      tdDel.appendChild(del); tr.appendChild(tdDel);
+      pkBody.appendChild(tr);
+    });
+  }
+
+  document.getElementById('addRow').addEventListener('click', () => {
+    state.programKerja.push({ bidang:'', kegiatan:'', sasaran:'', waktu:'', pj:'', indikator:'' });
+    renderProgramRows(); markUnsaved();
+  });
+
+  document.getElementById('btnGeneratePk').addEventListener('click', () => {
+    if(!state.misi.length && !state.tujuan.length){
+      showToast('Isi Misi/Tujuan dulu di tab "Visi, Misi & Tujuan".');
+      document.querySelector('.tab-btn[data-tab="tab-vm"]').click();
+      document.getElementById('visiInput').focus();
+      return;
+    }
+    const proceed = state.programKerja.length === 0
+      || confirm('Program kerja yang sudah ada akan diganti dengan hasil otomatis dari Misi & Tujuan. Lanjutkan?');
+    if(!proceed) return;
+    state.programKerja = generateProgramFromMisi();
+    renderProgramRows(); markUnsaved();
+    showToast('Program kerja terisi otomatis dari Misi & Tujuan.');
+  });
+
+  // ================= RKS & RKAS TABLE =================
+  const rksBody = document.getElementById('rksBody');
+  const rksEmpty = document.getElementById('rksEmpty');
+  const rksTotalEl = document.getElementById('rksTotal');
+
+  function formatRupiah(n){
+    const num = Number(n) || 0;
+    return 'Rp ' + num.toLocaleString('id-ID');
+  }
+
+  function moneyInput(value, onChange){
+    const inp = document.createElement('input');
+    inp.type = 'text'; inp.inputMode = 'numeric';
+    inp.className = 'cell-input money';
+    inp.value = value ? String(value) : '';
+    inp.placeholder = '0';
+    inp.addEventListener('input', () => {
+      const digits = inp.value.replace(/[^\d]/g,'');
+      inp.value = digits;
+      onChange(digits ? parseInt(digits,10) : 0);
+      renderRksTotal();
+      markUnsaved();
+    });
+    return inp;
+  }
+
+  function sumberDanaSelect(value, onChange){
+    const sel = document.createElement('select');
+    sel.className = 'cell-input';
+    const options = SUMBER_DANA_OPTIONS.includes(value) ? SUMBER_DANA_OPTIONS : [value || SUMBER_DANA_OPTIONS[0], ...SUMBER_DANA_OPTIONS.filter(o=>o!==value)];
+    options.forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt; o.textContent = opt;
+      if(opt === value) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', () => { onChange(sel.value); markUnsaved(); });
+    return sel;
+  }
+
+  function renderRksTotal(){
+    const total = state.rks.reduce((s,r) => s + (Number(r.volume)||0) * (Number(r.harga)||0), 0);
+    rksTotalEl.textContent = formatRupiah(total);
+  }
+
+  function renderRksRows(){
+    rksBody.innerHTML = '';
+    rksEmpty.style.display = state.rks.length ? 'none' : 'block';
+    state.rks.forEach((row, idx) => {
+      const tr = document.createElement('tr');
+      const tdNum = document.createElement('td'); tdNum.className='num'; tdNum.textContent=(idx+1);
+      tr.appendChild(tdNum);
+      const tdProg = document.createElement('td'); tdProg.appendChild(cell(row.program,'Program / kegiatan','wide',v=>row.program=v)); tr.appendChild(tdProg);
+      const tdSas = document.createElement('td'); tdSas.appendChild(cell(row.sasaran,'Sasaran','mid',v=>row.sasaran=v)); tr.appendChild(tdSas);
+      const tdSbr = document.createElement('td'); tdSbr.appendChild(sumberDanaSelect(row.sumberDana, v=>row.sumberDana=v)); tr.appendChild(tdSbr);
+      const tdVol = document.createElement('td');
+      const volInp = document.createElement('input');
+      volInp.type='text'; volInp.inputMode='numeric'; volInp.className='cell-input narrow'; volInp.style.minWidth='60px';
+      volInp.value = row.volume || '';
+      volInp.placeholder = '0';
+      volInp.addEventListener('input', () => {
+        const digits = volInp.value.replace(/[^\d]/g,''); volInp.value = digits;
+        row.volume = digits ? parseInt(digits,10) : 0;
+        renderRksTotal(); markUnsaved();
+      });
+      tdVol.appendChild(volInp); tr.appendChild(tdVol);
+      const tdSat = document.createElement('td'); tdSat.appendChild(cell(row.satuan,'Satuan','narrow',v=>row.satuan=v)); tr.appendChild(tdSat);
+      const tdHarga = document.createElement('td'); tdHarga.appendChild(moneyInput(row.harga, v=>row.harga=v)); tr.appendChild(tdHarga);
+      const tdJumlah = document.createElement('td'); tdJumlah.className='money';
+      tdJumlah.textContent = formatRupiah((Number(row.volume)||0) * (Number(row.harga)||0));
+      tr.appendChild(tdJumlah);
+      const tdWak = document.createElement('td'); tdWak.appendChild(cell(row.waktu,'Waktu','narrow',v=>row.waktu=v)); tr.appendChild(tdWak);
+      const tdPj = document.createElement('td'); tdPj.appendChild(cell(row.pj,'Penanggung jawab','narrow',v=>row.pj=v)); tr.appendChild(tdPj);
+      const tdDel = document.createElement('td'); tdDel.className='del-col';
+      const del = document.createElement('button'); del.className='item-del'; del.title='Hapus baris'; del.textContent='✕';
+      del.addEventListener('click', () => { state.rks.splice(idx,1); renderRksRows(); renderRksTotal(); markUnsaved(); });
+      tdDel.appendChild(del); tr.appendChild(tdDel);
+      rksBody.appendChild(tr);
+    });
+    renderRksTotal();
+  }
+
+  document.getElementById('addRksRow').addEventListener('click', () => {
+    state.rks.push({ program:'', sasaran:'', sumberDana:SUMBER_DANA_OPTIONS[0], volume:1, satuan:'Kegiatan', harga:0, waktu:'', pj:'' });
+    renderRksRows(); markUnsaved();
+  });
+
+  document.getElementById('btnGenerateRks').addEventListener('click', () => {
+    if(!state.programKerja.length){
+      showToast('Isi Program Kerja dulu di tab "Program Kerja".');
+      document.querySelector('.tab-btn[data-tab="tab-pk"]').click();
+      return;
+    }
+    const proceed = state.rks.length === 0
+      || confirm('RKS/RKAS yang sudah ada akan diganti dengan hasil otomatis dari Program Kerja. Lanjutkan?');
+    if(!proceed) return;
+    state.rks = generateRksFromProgram();
+    renderRksRows(); markUnsaved();
+    showToast('RKS/RKAS terisi otomatis dari Program Kerja — lengkapi Volume & Harga Satuan.');
+  });
+
+  // ---------- unduh RKS/RKAS sebagai PDF & Excel ----------
+  function rksExportFilenameBase(){
+    return (state.namaSekolah || 'rks-rkas').trim().replace(/\s+/g,'-').toLowerCase() + '-rks-rkas';
+  }
+
+  function rksTableRows(){
+    return state.rks.map((r,i) => {
+      const jumlah = (Number(r.volume)||0) * (Number(r.harga)||0);
+      return [
+        String(i+1), r.program||'', r.sasaran||'', r.sumberDana||'',
+        String(r.volume||0), r.satuan||'', (Number(r.harga)||0).toLocaleString('id-ID'),
+        jumlah.toLocaleString('id-ID'), r.waktu||'', r.pj||'',
+      ];
+    });
+  }
+
+  function rksTotalAmount(){
+    return state.rks.reduce((s,r) => s + (Number(r.volume)||0) * (Number(r.harga)||0), 0);
+  }
+
+  document.getElementById('btnDownloadRksPdf').addEventListener('click', () => {
+    if(!state.rks.length){ showToast('Belum ada data RKS/RKAS untuk diunduh.'); return; }
+    if(!window.jspdf || !window.jspdf.jsPDF){ showToast('Gagal memuat pustaka PDF. Periksa koneksi internet dan coba lagi.'); return; }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation:'landscape', unit:'pt', format:'a4' });
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(13);
+    doc.text((state.namaSekolah || 'Nama Sekolah').toUpperCase(), 40, 36);
+    doc.setFontSize(11);
+    doc.text('Rencana Kerja Sekolah & Rencana Kegiatan dan Anggaran Sekolah (RKS/RKAS)', 40, 52);
+    doc.setFont('helvetica','normal'); doc.setFontSize(9.5);
+    let infoLine = [];
+    if(state.tahunAjaran) infoLine.push('Tahun Ajaran ' + state.tahunAjaran);
+    if(state.kepsek) infoLine.push('Kepala Sekolah: ' + state.kepsek);
+    if(infoLine.length) doc.text(infoLine.join('   |   '), 40, 66);
+
+    doc.autoTable({
+      startY: 78,
+      head: [['No','Program / Kegiatan','Sasaran','Sumber Dana','Volume','Satuan','Harga Satuan (Rp)','Jumlah (Rp)','Waktu','Penanggung Jawab']],
+      body: rksTableRows(),
+      foot: [['','','','','','','Total Anggaran', rksTotalAmount().toLocaleString('id-ID'),'','']],
+      styles: { fontSize:8, cellPadding:4, valign:'top' },
+      headStyles: { fillColor:[28,58,75], textColor:255, fontStyle:'bold' },
+      footStyles: { fillColor:[220,230,219], textColor:[18,38,47], fontStyle:'bold' },
+      columnStyles: {
+        0:{ cellWidth:24 }, 4:{ cellWidth:42, halign:'right' }, 5:{ cellWidth:48 },
+        6:{ cellWidth:66, halign:'right' }, 7:{ cellWidth:66, halign:'right' },
+      },
+      theme: 'grid',
+      margin: { left:40, right:40 },
+    });
+
+    doc.save(rksExportFilenameBase() + '.pdf');
+    showToast('PDF RKS/RKAS berhasil diunduh.');
+  });
+
+  document.getElementById('btnDownloadRksExcel').addEventListener('click', () => {
+    if(!state.rks.length){ showToast('Belum ada data RKS/RKAS untuk diunduh.'); return; }
+    if(!window.XLSX){ showToast('Gagal memuat pustaka Excel. Periksa koneksi internet dan coba lagi.'); return; }
+
+    const header = ['No','Program / Kegiatan','Sasaran','Sumber Dana','Volume','Satuan','Harga Satuan (Rp)','Jumlah (Rp)','Waktu Pelaksanaan','Penanggung Jawab'];
+    const rows = state.rks.map((r,i) => {
+      const jumlah = (Number(r.volume)||0) * (Number(r.harga)||0);
+      return [i+1, r.program||'', r.sasaran||'', r.sumberDana||'', Number(r.volume)||0, r.satuan||'', Number(r.harga)||0, jumlah, r.waktu||'', r.pj||''];
+    });
+    const totalRow = ['','','','','','','Total Anggaran', rksTotalAmount(), '', ''];
+
+    const aoa = [
+      [(state.namaSekolah || 'Nama Sekolah').toUpperCase()],
+      ['Rencana Kerja Sekolah & Rencana Kegiatan dan Anggaran Sekolah (RKS/RKAS)'],
+      [state.tahunAjaran ? ('Tahun Ajaran ' + state.tahunAjaran) : ''],
+      [],
+      header,
+      ...rows,
+      totalRow,
+    ];
+
+    const ws = XLSX.utils.aoa_to_sheet(aoa);
+    ws['!cols'] = [
+      {wch:4},{wch:32},{wch:22},{wch:16},{wch:9},{wch:10},{wch:16},{wch:16},{wch:16},{wch:20}
+    ];
+    ws['!merges'] = [
+      { s:{r:0,c:0}, e:{r:0,c:9} },
+      { s:{r:1,c:0}, e:{r:1,c:9} },
+      { s:{r:2,c:0}, e:{r:2,c:9} },
+    ];
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'RKS-RKAS');
+    XLSX.writeFile(wb, rksExportFilenameBase() + '.xlsx');
+    showToast('Excel RKS/RKAS berhasil diunduh.');
+  });
+
+  // ================= HEADER FIELDS =================
+  document.getElementById('namaSekolah').addEventListener('input', e=>{ state.namaSekolah=e.target.value; markUnsaved(); });
+  document.getElementById('tahunAjaran').addEventListener('input', e=>{ state.tahunAjaran=e.target.value; markUnsaved(); });
+  document.getElementById('kepsek').addEventListener('input', e=>{ state.kepsek=e.target.value; markUnsaved(); });
+
+  // ================= SIMPAN / MUAT =================
+  const statusEl = document.getElementById('statusText');
+  let saveTimer = null;
+
+  function markUnsaved(){
+    statusEl.textContent = 'Perubahan belum disimpan';
+    statusEl.classList.remove('saved');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveState, 1200);
+  }
+
+  async function saveState(){
+    // Penyimpanan otomatis lintas-sesi bersifat best-effort dan tidak boleh
+    // mengganggu penggunaan aplikasi bila tidak tersedia/gagal di lingkungan ini.
+    statusEl.textContent = 'Tersimpan untuk sesi ini';
+    statusEl.classList.add('saved');
+    if(!window.storage) return;
+    try{
+      await window.storage.set(STORAGE_KEY, JSON.stringify(state), false);
+    } catch(err){
+      console.warn('Penyimpanan otomatis lintas-sesi tidak tersedia:', err);
+    }
+  }
+
+  async function loadState(){
+    if(window.storage){
+      try{
+        const result = await window.storage.get(STORAGE_KEY, false);
+        if(result && result.value){
+          const data = JSON.parse(result.value);
+          state.namaSekolah = data.namaSekolah || '';
+          state.tahunAjaran = data.tahunAjaran || '';
+          state.kepsek = data.kepsek || '';
+          state.visi = data.visi || '';
+          state.misi = Array.isArray(data.misi) ? data.misi : [];
+          state.tujuan = Array.isArray(data.tujuan) ? data.tujuan : [];
+          state.programKerja = Array.isArray(data.programKerja) ? data.programKerja : [];
+          state.rks = Array.isArray(data.rks) ? data.rks : [];
+          statusEl.textContent = 'Tersimpan';
+          statusEl.classList.add('saved');
+        }
+      } catch(err){
+        // Penyimpanan lintas-sesi tidak tersedia di lingkungan ini — lanjut dengan formulir kosong, tanpa mengganggu pengguna.
+        console.warn('Pemuatan data lintas-sesi tidak tersedia:', err);
+      }
+    }
+    document.getElementById('namaSekolah').value = state.namaSekolah;
+    document.getElementById('tahunAjaran').value = state.tahunAjaran;
+    document.getElementById('kepsek').value = state.kepsek;
+    renderVmInputs();
+    renderVmSummary();
+    renderProgramRows();
+    renderRksRows();
+  }
+
+  document.getElementById('btnSave').addEventListener('click', saveState);
+
+  // ================= HAPUS SEMUA =================
+  async function resetAll(){
+    state.namaSekolah = '';
+    state.tahunAjaran = '';
+    state.kepsek = '';
+    state.visi = '';
+    state.misi = [];
+    state.tujuan = [];
+    state.programKerja = [];
+    state.rks = [];
+
+    document.getElementById('namaSekolah').value = '';
+    document.getElementById('tahunAjaran').value = '';
+    document.getElementById('kepsek').value = '';
+    document.getElementById('visiInput').value = '';
+
+    renderVmInputs();
+    renderVmSummary();
+    renderProgramRows();
+    renderRksRows();
+
+    if(window.storage){
+      try{ await window.storage.delete(STORAGE_KEY, false); } catch(err){ /* abaikan bila tidak tersedia */ }
+    }
+
+    markUnsaved();
+    showToast('Semua data sudah dihapus.');
+  }
+
+  document.getElementById('btnResetAll').addEventListener('click', () => {
+    if(confirm('Yakin ingin menghapus SEMUA data (visi, misi, tujuan, program kerja, dan RKS/RKAS)? Tindakan ini tidak bisa dibatalkan.')){
+      resetAll();
+    }
+  });
+
+  // ================= SALIN / UNDUH =================
+  function buildText(){
+    const lines = [];
+    lines.push((state.namaSekolah || 'Nama Sekolah').toUpperCase());
+    lines.push('VISI, MISI, TUJUAN, DAN PROGRAM KERJA SEKOLAH');
+    if(state.tahunAjaran) lines.push('Tahun Ajaran ' + state.tahunAjaran);
+    if(state.kepsek) lines.push('Kepala Sekolah: ' + state.kepsek);
+    lines.push('');
+    lines.push('VISI'); lines.push(state.visi || '(belum diisi)'); lines.push('');
+    lines.push('MISI');
+    (state.misi.length?state.misi:['(belum diisi)']).forEach((m,i)=>lines.push((i+1)+'. '+m));
+    lines.push('');
+    lines.push('TUJUAN');
+    (state.tujuan.length?state.tujuan:['(belum diisi)']).forEach((t,i)=>lines.push((i+1)+'. '+t));
+    lines.push('');
+    lines.push('PROGRAM KERJA');
+    if(state.programKerja.length===0){ lines.push('(belum diisi)'); }
+    else {
+      state.programKerja.forEach((r,i)=>{
+        lines.push('');
+        lines.push((i+1)+'. '+(r.kegiatan||'(tanpa nama program)'));
+        lines.push('   Bidang            : ' + (r.bidang||'-'));
+        lines.push('   Sasaran           : ' + (r.sasaran||'-'));
+        lines.push('   Waktu Pelaksanaan : ' + (r.waktu||'-'));
+        lines.push('   Penanggung Jawab  : ' + (r.pj||'-'));
+        lines.push('   Indikator         : ' + (r.indikator||'-'));
+      });
+    }
+    lines.push('');
+    lines.push('RKS & RKAS (RENCANA KERJA DAN ANGGARAN SEKOLAH)');
+    if(state.rks.length===0){ lines.push('(belum diisi)'); }
+    else {
+      let total = 0;
+      state.rks.forEach((r,i)=>{
+        const jumlah = (Number(r.volume)||0) * (Number(r.harga)||0);
+        total += jumlah;
+        lines.push('');
+        lines.push((i+1)+'. '+(r.program||'(tanpa nama program)'));
+        lines.push('   Sasaran           : ' + (r.sasaran||'-'));
+        lines.push('   Sumber Dana       : ' + (r.sumberDana||'-'));
+        lines.push('   Volume x Satuan   : ' + (r.volume||0) + ' ' + (r.satuan||'-'));
+        lines.push('   Harga Satuan      : Rp ' + (Number(r.harga)||0).toLocaleString('id-ID'));
+        lines.push('   Jumlah            : Rp ' + jumlah.toLocaleString('id-ID'));
+        lines.push('   Waktu Pelaksanaan : ' + (r.waktu||'-'));
+        lines.push('   Penanggung Jawab  : ' + (r.pj||'-'));
+      });
+      lines.push('');
+      lines.push('TOTAL ANGGARAN: Rp ' + total.toLocaleString('id-ID'));
+    }
+    return lines.join('\n');
+  }
+
+  document.getElementById('btnCopy').addEventListener('click', async () => {
+    try{ await navigator.clipboard.writeText(buildText()); showToast('Teks disalin ke clipboard.'); }
+    catch(err){ showToast('Gagal menyalin teks.'); }
+  });
+  document.getElementById('btnDownload').addEventListener('click', () => {
+    const blob = new Blob([buildText()], { type:'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const filename = (state.namaSekolah || 'visi-misi-program-kerja').trim().replace(/\s+/g,'-').toLowerCase();
+    a.href = url; a.download = filename + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  // ================= TOAST =================
+  let toastTimer = null;
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
+  }
+
+  loadState();
+})();
+</script>
+</body>
+</html>
