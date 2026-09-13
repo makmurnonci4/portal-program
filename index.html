@@ -314,6 +314,10 @@
         </div>
       </section>
     </div>
+
+    <div style="display:flex;justify-content:flex-end;margin-top:4px;">
+      <button class="btn secondary small" id="btnDownloadVmPdf">Unduh PDF Visi, Misi &amp; Tujuan</button>
+    </div>
   </div>
 
   <!-- ===================== TAB: PROGRAM KERJA ===================== -->
@@ -330,6 +334,7 @@
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
           <select class="add-select-btn" id="addRowSelect"></select>
           <button class="btn small" id="btnGeneratePk">Buat Program Kerja Otomatis</button>
+          <button class="btn secondary small" id="btnDownloadPkPdf">Unduh PDF</button>
         </div>
       </div>
       <span class="hint">Dibuat otomatis dari setiap poin Misi &amp; Tujuan pada tab sebelumnya</span>
@@ -1069,6 +1074,111 @@
     XLSX.utils.book_append_sheet(wb, ws, 'RKS-RKAS');
     XLSX.writeFile(wb, rksExportFilenameBase() + '.xlsx');
     showToast('Excel RKS/RKAS berhasil diunduh.');
+  });
+
+  // ---------- unduh Visi, Misi & Tujuan sebagai PDF ----------
+  function vmExportFilenameBase(){
+    return (state.namaSekolah || 'visi-misi-tujuan').trim().replace(/\s+/g,'-').toLowerCase() + '-visi-misi-tujuan';
+  }
+
+  document.getElementById('btnDownloadVmPdf').addEventListener('click', () => {
+    if(!state.visi.trim() && !state.misi.length && !state.tujuan.length){
+      showToast('Isi Visi, Misi, atau Tujuan terlebih dahulu.'); return;
+    }
+    if(!window.jspdf || !window.jspdf.jsPDF){ showToast('Gagal memuat pustaka PDF. Periksa koneksi internet dan coba lagi.'); return; }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation:'portrait', unit:'pt', format:'a4' });
+    const marginLeft = 40;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const maxWidth = pageWidth - marginLeft*2;
+    let y = 50;
+
+    function ensureSpace(lineHeight){
+      if(y > pageHeight - 50){ doc.addPage(); y = 50; }
+    }
+    function heading(text){
+      y += 6; ensureSpace(14);
+      doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(28,58,75);
+      doc.text(text, marginLeft, y); y += 16;
+      doc.setTextColor(20,20,20);
+    }
+    function paragraph(text){
+      doc.setFont('helvetica','normal'); doc.setFontSize(10.5);
+      const lines = doc.splitTextToSize(text || '(belum diisi)', maxWidth);
+      lines.forEach(line => { ensureSpace(14); doc.text(line, marginLeft, y); y += 14; });
+    }
+    function numberedList(arr){
+      if(!arr.length){ paragraph('(belum diisi)'); return; }
+      doc.setFont('helvetica','normal'); doc.setFontSize(10.5);
+      arr.forEach((item, i) => {
+        const lines = doc.splitTextToSize((i+1)+'. '+item, maxWidth);
+        lines.forEach(line => { ensureSpace(14); doc.text(line, marginLeft, y); y += 14; });
+        y += 3;
+      });
+    }
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(14);
+    doc.text((state.namaSekolah || 'Nama Sekolah').toUpperCase(), marginLeft, y); y += 18;
+    doc.setFontSize(11.5);
+    doc.text('VISI, MISI & TUJUAN SEKOLAH', marginLeft, y); y += 16;
+    doc.setFont('helvetica','normal'); doc.setFontSize(9.5);
+    const infoLine = [];
+    if(state.tahunAjaran) infoLine.push('Tahun Ajaran ' + state.tahunAjaran);
+    if(state.kepsek) infoLine.push('Kepala Sekolah: ' + state.kepsek);
+    if(infoLine.length){ doc.text(infoLine.join('   |   '), marginLeft, y); y += 18; } else { y += 6; }
+
+    heading('VISI'); paragraph(state.visi);
+    heading('MISI'); numberedList(state.misi);
+    heading('TUJUAN'); numberedList(state.tujuan);
+
+    doc.save(vmExportFilenameBase() + '.pdf');
+    showToast('PDF Visi, Misi & Tujuan berhasil diunduh.');
+  });
+
+  // ---------- unduh Program Kerja sebagai PDF ----------
+  function pkExportFilenameBase(){
+    return (state.namaSekolah || 'program-kerja').trim().replace(/\s+/g,'-').toLowerCase() + '-program-kerja';
+  }
+  function pkTableRows(){
+    return state.programKerja.map((r,i) => [
+      String(i+1), r.bidang||'', r.kegiatan||'', r.sasaran||'',
+      r.waktu||'', r.pj||'', r.indikator||'', r.prinsip||'',
+    ]);
+  }
+
+  document.getElementById('btnDownloadPkPdf').addEventListener('click', () => {
+    if(!state.programKerja.length){ showToast('Belum ada data Program Kerja untuk diunduh.'); return; }
+    if(!window.jspdf || !window.jspdf.jsPDF){ showToast('Gagal memuat pustaka PDF. Periksa koneksi internet dan coba lagi.'); return; }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation:'landscape', unit:'pt', format:'a4' });
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(13);
+    doc.text((state.namaSekolah || 'Nama Sekolah').toUpperCase(), 40, 36);
+    doc.setFontSize(11);
+    doc.text('Program Kerja Sekolah', 40, 52);
+    doc.setFont('helvetica','normal'); doc.setFontSize(9.5);
+    const infoLine = [];
+    if(state.tahunAjaran) infoLine.push('Tahun Ajaran ' + state.tahunAjaran);
+    if(state.kepsek) infoLine.push('Kepala Sekolah: ' + state.kepsek);
+    if(infoLine.length) doc.text(infoLine.join('   |   '), 40, 66);
+
+    doc.autoTable({
+      startY: 78,
+      head: [['No','Bidang','Program / Kegiatan','Sasaran','Waktu','Penanggung Jawab','Indikator Keberhasilan','Prinsip Pembelajaran Mendalam']],
+      body: pkTableRows(),
+      styles: { fontSize:8, cellPadding:4, valign:'top' },
+      headStyles: { fillColor:[28,58,75], textColor:255, fontStyle:'bold' },
+      columnStyles: {
+        0:{ cellWidth:20 }, 1:{ cellWidth:85 }, 4:{ cellWidth:65 },
+        5:{ cellWidth:80 }, 7:{ cellWidth:75 },
+      },
+      theme: 'grid',
+      margin: { left:40, right:40 },
+    });
+
+    doc.save(pkExportFilenameBase() + '.pdf');
+    showToast('PDF Program Kerja berhasil diunduh.');
   });
 
   // ================= HEADER FIELDS =================
