@@ -134,6 +134,38 @@
   }
   .add-item:hover{border-color:var(--sage);color:var(--sage);}
   .list-card.tujuan .add-item:hover{border-color:var(--gold);color:var(--gold);}
+  select.add-item{appearance:none;-webkit-appearance:none;cursor:pointer;}
+  .add-select-btn{
+    background:none;border:1px solid var(--navy);color:var(--navy);
+    padding:8px 12px;border-radius:7px;font-size:13px;cursor:pointer;
+    font-family:'Inter',sans-serif;appearance:none;-webkit-appearance:none;
+  }
+  .add-select-btn:hover{background:var(--sage-soft);}
+
+  /* ---- kerangka pembelajaran mendalam ---- */
+  .pm-card{border-left:4px solid var(--navy);}
+  .pm-card h3{
+    font-family:'Source Serif 4',serif;font-size:14.5px;font-weight:600;color:var(--navy-deep);margin:0 0 8px;
+  }
+  .pm-principles{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+  .pm-chip{
+    font-family:'Inter',sans-serif;font-size:12px;font-weight:600;padding:5px 11px;border-radius:99px;
+    background:var(--sage-soft);color:var(--sage);
+  }
+  .pm-chip.bermakna{background:var(--gold-soft);color:var(--gold);}
+  .pm-chip.menggembirakan{background:#E4EBF0;color:var(--navy);}
+  .pm-dims{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+  @media (max-width:720px){.pm-dims{grid-template-columns:repeat(2,1fr);}}
+  .pm-dim{
+    font-size:12px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);
+    border-radius:6px;padding:6px 8px;text-align:center;
+  }
+  select.cell-select{
+    width:100%;border:1px solid var(--line);background:var(--card);border-radius:6px;
+    font-family:'Inter',sans-serif;font-size:12.5px;color:var(--ink);
+    outline:none;padding:5px 4px;min-width:130px;
+  }
+  select.cell-select:focus{border-color:var(--gold);}
 
   /* ---- ringkasan (dipakai di tab program kerja) ---- */
   .vm-card{border-left:4px solid var(--gold);}
@@ -199,7 +231,10 @@
   <header class="top">
     <div class="titleblock">
       <div class="mark">VMP</div>
-      <h1>Visi, Misi, Tujuan &amp; Program Kerja Sekolah</h1>
+      <div>
+        <h1>Visi, Misi, Tujuan &amp; Program Kerja Sekolah</h1>
+        <p style="margin:3px 0 0;font-size:12.5px;color:var(--ink-soft);">Selaras dengan kerangka Pembelajaran Mendalam (Deep Learning) Kemendikdasmen</p>
+      </div>
     </div>
     <div class="fields-row">
       <div class="school-field">
@@ -227,6 +262,27 @@
   <div class="tab-panel active" id="tab-vm">
 
     <section>
+      <div class="card pm-card">
+        <h3>Kerangka Pembelajaran Mendalam</h3>
+        <div class="pm-principles">
+          <span class="pm-chip">Berkesadaran</span>
+          <span class="pm-chip bermakna">Bermakna</span>
+          <span class="pm-chip menggembirakan">Menggembirakan</span>
+        </div>
+        <div class="pm-dims">
+          <div class="pm-dim">Keimanan &amp; Ketakwaan</div>
+          <div class="pm-dim">Kewargaan</div>
+          <div class="pm-dim">Penalaran Kritis</div>
+          <div class="pm-dim">Kreativitas</div>
+          <div class="pm-dim">Kolaborasi</div>
+          <div class="pm-dim">Kemandirian</div>
+          <div class="pm-dim">Kesehatan</div>
+          <div class="pm-dim">Komunikasi</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
       <div class="section-head">
         <h2>Visi</h2>
         <span class="hint">Tulis, tempel, atau impor visi sekolah</span>
@@ -237,7 +293,7 @@
           <button class="btn secondary small" id="btnImport">Impor dari file (.txt/.docx/.xlsx/.pdf)</button>
           <input type="file" id="fileInput" accept=".txt,.docx,.xlsx,.xls,.csv,.pdf">
           <button class="btn small" id="btnGenerateVm">Isi Misi &amp; Tujuan Otomatis</button>
-          <span class="hint">Berdasarkan kata kunci dalam visi</span>
+          <span class="hint">Dipetakan ke 8 Dimensi Profil Lulusan Pembelajaran Mendalam</span>
         </div>
       </div>
     </section>
@@ -254,7 +310,7 @@
         <div class="section-head"><h2>Tujuan</h2></div>
         <div class="card list-card tujuan">
           <div id="tujuanList"></div>
-          <button class="add-item" id="addTujuan">+ Tambah tujuan</button>
+          <select class="add-item" id="addTujuanSelect"></select>
         </div>
       </section>
     </div>
@@ -272,7 +328,7 @@
       <div class="section-head">
         <h2>Program Kerja</h2>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="btn secondary small" id="addRow">+ Tambah baris</button>
+          <select class="add-select-btn" id="addRowSelect"></select>
           <button class="btn small" id="btnGeneratePk">Buat Program Kerja Otomatis</button>
         </div>
       </div>
@@ -283,7 +339,7 @@
           <thead>
             <tr>
               <th></th><th>Bidang</th><th>Program / Kegiatan</th><th>Sasaran</th>
-              <th>Waktu Pelaksanaan</th><th>Penanggung Jawab</th><th>Indikator Keberhasilan</th><th></th>
+              <th>Waktu Pelaksanaan</th><th>Penanggung Jawab</th><th>Indikator Keberhasilan</th><th>Prinsip Pembelajaran Mendalam</th><th></th>
             </tr>
           </thead>
           <tbody id="pkBody"></tbody>
@@ -357,106 +413,86 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 (function(){
-  const STORAGE_KEY = 'perencanaan-sekolah:data';
+  const STORAGE_KEY = 'perencanaan-sekolah-rks:data:v2-pm';
 
   const state = {
     namaSekolah:'', tahunAjaran:'', kepsek:'',
     visi:'', misi:[], tujuan:[],
-    programKerja: [],   // { bidang, kegiatan, sasaran, waktu, pj, indikator }
+    programKerja: [],   // { bidang, kegiatan, sasaran, waktu, pj, indikator, prinsip }
     rks: []             // { program, sasaran, sumberDana, volume, satuan, harga, waktu, pj }
   };
 
-  // ---------- kamus tema: visi -> misi/tujuan ----------
+  // ---------- kamus tema: visi -> misi/tujuan, dipetakan ke 8 Dimensi Profil Lulusan
+  //            kerangka Pembelajaran Mendalam (Kemendikdasmen) ----------
+  const PRINSIP_OPTIONS = ['Berkesadaran','Bermakna','Menggembirakan'];
   const THEMES = [
-    { kw:['iman','taqwa','takwa','religius','beriman','bertakwa','agama'],
-      misi:'Menumbuhkan keimanan dan ketakwaan peserta didik melalui pembiasaan ibadah dan penguatan nilai-nilai keagamaan dalam kehidupan sehari-hari.',
-      tujuan:'Peserta didik memiliki keimanan dan ketakwaan yang kuat serta mengamalkan nilai-nilai agama dalam kehidupan sehari-hari.',
-      bidang:'Keagamaan', kegiatan:'Pembiasaan salat berjamaah, tadarus, dan peringatan hari besar keagamaan',
+    { dimensi:'Keimanan dan Ketakwaan', prinsip:'Berkesadaran',
+      kw:['iman','taqwa','takwa','religius','beriman','bertakwa','agama','spiritual'],
+      misi:'Menumbuhkan keimanan dan ketakwaan peserta didik melalui olah hati dan pembiasaan ibadah yang berkesadaran, sehingga nilai-nilai keagamaan dihayati secara bermakna dalam keseharian.',
+      tujuan:'Peserta didik memiliki keimanan dan ketakwaan yang kuat serta mampu merefleksikan dan mengamalkan nilai-nilai agama dengan penuh kesadaran dalam kehidupan sehari-hari.',
+      bidang:'Keagamaan', kegiatan:'Pembiasaan ibadah reflektif (salat berjamaah, tadarus, doa bersama) disertai jurnal refleksi spiritual peserta didik',
       sasaran:'Seluruh peserta didik dan guru', waktu:'Setiap hari / sesuai kalender keagamaan',
-      pj:'Guru PAI', indikator:'Meningkatnya kedisiplinan ibadah dan partisipasi kegiatan keagamaan' },
-    { kw:['akhlak','karakter','budi pekerti','moral','berkarakter'],
-      misi:'Membentuk karakter dan akhlak mulia peserta didik melalui keteladanan, pembiasaan, dan penguatan pendidikan karakter di seluruh kegiatan sekolah.',
-      tujuan:'Peserta didik tumbuh menjadi pribadi berkarakter, berakhlak mulia, dan bertanggung jawab dalam bersikap dan bertindak.',
-      bidang:'Kesiswaan & Karakter', kegiatan:'Penguatan pendidikan karakter melalui pembiasaan, keteladanan, dan bimbingan konseling',
+      pj:'Guru PAI', indikator:'Meningkatnya kedisiplinan ibadah dan kemampuan peserta didik merefleksikan makna ibadah yang dijalankan' },
+    { dimensi:'Kewargaan', prinsip:'Bermakna',
+      kw:['kewargaan','akhlak','karakter','budi pekerti','moral','berkarakter','nasionalis','cinta tanah air','bela negara','toleransi','kebhinekaan'],
+      misi:'Menumbuhkan sikap kewargaan yang berakhlak mulia melalui keteladanan, pembiasaan, dan proyek kontekstual yang menghubungkan nilai karakter dengan kehidupan bermasyarakat.',
+      tujuan:'Peserta didik tumbuh menjadi warga negara yang berkarakter, toleran, dan berpartisipasi aktif serta bertanggung jawab dalam kehidupan bermasyarakat.',
+      bidang:'Kesiswaan & Kewargaan', kegiatan:'Proyek kewargaan berbasis masalah nyata (gotong royong, bakti sosial, simulasi musyawarah) dan penguatan pendidikan karakter',
       sasaran:'Seluruh peserta didik', waktu:'Sepanjang tahun ajaran',
-      pj:'Wakil Kepala Sekolah Kesiswaan', indikator:'Menurunnya pelanggaran tata tertib dan meningkatnya sikap positif peserta didik' },
-    { kw:['unggul','prestasi','akademik','berprestasi','mutu','kualitas','cerdas'],
-      misi:'Menyelenggarakan pembelajaran bermutu yang berorientasi pada pencapaian prestasi akademik peserta didik secara optimal.',
-      tujuan:'Meningkatnya prestasi akademik peserta didik sesuai dengan potensi dan minat masing-masing.',
-      bidang:'Kurikulum & Akademik', kegiatan:'Pengembangan pembelajaran, pengayaan, dan bimbingan kompetisi/ujian',
+      pj:'Wakil Kepala Sekolah Kesiswaan', indikator:'Meningkatnya partisipasi aktif dan sikap positif peserta didik dalam kegiatan kewargaan' },
+    { dimensi:'Penalaran Kritis', prinsip:'Bermakna',
+      kw:['unggul','prestasi','akademik','berprestasi','mutu','kualitas','cerdas','kritis','bernalar','analitis','literasi','gemar membaca','minat baca'],
+      misi:'Menyelenggarakan pembelajaran bermutu dengan siklus memahami, mengaplikasi, dan merefleksi, agar peserta didik terbiasa bernalar kritis dalam menyelesaikan masalah nyata.',
+      tujuan:'Peserta didik mampu berpikir kritis, menganalisis informasi secara objektif, dan meningkat prestasi akademiknya sesuai potensi dan minat masing-masing.',
+      bidang:'Kurikulum & Akademik', kegiatan:'Pembelajaran berbasis masalah/studi kasus, pengayaan, Gerakan Literasi Sekolah, dan bimbingan kompetisi/ujian',
       sasaran:'Seluruh peserta didik', waktu:'Setiap semester',
-      pj:'Wakil Kepala Sekolah Kurikulum', indikator:'Meningkatnya rata-rata nilai dan jumlah prestasi akademik' },
-    { kw:['kreatif','inovatif','inovasi','kreativitas'],
-      misi:'Mengembangkan budaya berpikir kreatif dan inovatif peserta didik melalui pembelajaran yang menantang dan berbasis proyek.',
-      tujuan:'Peserta didik mampu berpikir kreatif, inovatif, dan mampu menyelesaikan masalah dengan solusi yang orisinal.',
-      bidang:'Inovasi Pembelajaran', kegiatan:'Pelaksanaan pembelajaran berbasis proyek dan pengembangan kreativitas peserta didik',
+      pj:'Wakil Kepala Sekolah Kurikulum', indikator:'Meningkatnya kemampuan bernalar kritis dan rata-rata capaian akademik peserta didik' },
+    { dimensi:'Kreativitas', prinsip:'Menggembirakan',
+      kw:['kreatif','inovatif','inovasi','kreativitas','seni','budaya','kearifan lokal'],
+      misi:'Mengembangkan budaya berpikir kreatif dan inovatif peserta didik melalui pengalaman belajar berbasis proyek yang menantang sekaligus menggembirakan.',
+      tujuan:'Peserta didik mampu berpikir kreatif, inovatif, dan menghasilkan karya orisinal sebagai solusi atas persoalan nyata di sekitarnya.',
+      bidang:'Inovasi Pembelajaran & Seni Budaya', kegiatan:'Pembelajaran berbasis proyek, pentas seni budaya, dan unjuk karya kreatif peserta didik',
       sasaran:'Seluruh peserta didik dan guru', waktu:'Setiap semester',
-      pj:'Tim Pengembang Kurikulum', indikator:'Bertambahnya karya kreatif/inovatif peserta didik' },
-    { kw:['teknologi','digital','literasi digital','informasi'],
-      misi:'Mengintegrasikan pemanfaatan teknologi informasi dan komunikasi dalam proses pembelajaran dan tata kelola sekolah.',
-      tujuan:'Peserta didik memiliki kecakapan digital dan mampu memanfaatkan teknologi secara bijak dan bertanggung jawab.',
-      bidang:'Sarana & Teknologi Informasi', kegiatan:'Pemanfaatan TIK dalam pembelajaran dan pelatihan literasi digital',
-      sasaran:'Guru dan peserta didik', waktu:'Sepanjang tahun ajaran',
-      pj:'Koordinator TIK', indikator:'Meningkatnya penggunaan TIK dalam pembelajaran dan tata kelola sekolah' },
-    { kw:['lingkungan','adiwiyata','hijau','ramah lingkungan'],
-      misi:'Menumbuhkan kepedulian dan tanggung jawab peserta didik terhadap kelestarian lingkungan melalui program sekolah berbudaya lingkungan.',
-      tujuan:'Terwujudnya warga sekolah yang peduli, cinta, dan berperan aktif dalam menjaga kelestarian lingkungan.',
-      bidang:'Lingkungan Hidup', kegiatan:'Program sekolah hijau, pengelolaan sampah, dan penghijauan lingkungan sekolah',
-      sasaran:'Seluruh warga sekolah', waktu:'Sepanjang tahun ajaran',
-      pj:'Koordinator Adiwiyata', indikator:'Terwujudnya lingkungan sekolah yang bersih, hijau, dan sehat' },
-    { kw:['budaya','berbudaya','kearifan lokal','nasionalis','cinta tanah air'],
-      misi:'Melestarikan dan mengembangkan nilai-nilai budaya bangsa serta kearifan lokal dalam kehidupan sekolah.',
-      tujuan:'Peserta didik memiliki kecintaan terhadap budaya bangsa dan mampu melestarikan kearifan lokal.',
-      bidang:'Budaya & Kearifan Lokal', kegiatan:'Pentas seni budaya, muatan lokal, dan peringatan hari besar nasional',
-      sasaran:'Seluruh peserta didik', waktu:'Sesuai kalender akademik',
-      pj:'Guru Seni Budaya/Mulok', indikator:'Terselenggaranya kegiatan budaya secara rutin' },
-    { kw:['disiplin','tertib'],
-      misi:'Menanamkan sikap disiplin dan tanggung jawab peserta didik melalui penerapan tata tertib sekolah secara konsisten.',
-      tujuan:'Terbentuknya peserta didik yang disiplin, tertib, dan bertanggung jawab dalam menjalankan tugas dan kewajibannya.',
-      bidang:'Kesiswaan & Ketertiban', kegiatan:'Penegakan tata tertib sekolah dan pembinaan kedisiplinan peserta didik',
-      sasaran:'Seluruh peserta didik', waktu:'Sepanjang tahun ajaran',
-      pj:'Guru BK/Kesiswaan', indikator:'Menurunnya jumlah pelanggaran tata tertib sekolah' },
-    { kw:['global','kompetitif','bersaing','internasional','berdaya saing'],
-      misi:'Menyiapkan peserta didik agar memiliki daya saing global melalui pembelajaran yang berwawasan luas dan berstandar mutu.',
-      tujuan:'Peserta didik mampu bersaing dan beradaptasi di tingkat nasional maupun global.',
-      bidang:'Kerja Sama & Daya Saing', kegiatan:'Keikutsertaan dalam kompetisi tingkat regional, nasional, dan internasional',
-      sasaran:'Peserta didik berpotensi', waktu:'Sesuai jadwal kompetisi',
-      pj:'Wakil Kepala Sekolah Humas', indikator:'Bertambahnya keikutsertaan dan prestasi di luar sekolah' },
-    { kw:['literasi','gemar membaca','minat baca'],
-      misi:'Membudayakan gerakan literasi sekolah untuk menumbuhkan minat baca dan kemampuan berpikir kritis peserta didik.',
-      tujuan:'Peserta didik memiliki budaya literasi yang tinggi serta mampu berpikir kritis dan analitis.',
-      bidang:'Literasi', kegiatan:'Gerakan Literasi Sekolah, pojok baca kelas, dan lomba literasi',
-      sasaran:'Seluruh peserta didik', waktu:'Setiap minggu',
-      pj:'Koordinator Literasi/Pustakawan', indikator:'Meningkatnya minat baca dan kunjungan perpustakaan' },
-    { kw:['wirausaha','kewirausahaan','mandiri','entrepreneur'],
-      misi:'Membekali peserta didik dengan jiwa kewirausahaan dan kemandirian melalui pembelajaran kecakapan hidup.',
-      tujuan:'Peserta didik memiliki jiwa kewirausahaan, kemandirian, dan keterampilan hidup yang bermanfaat bagi masa depannya.',
-      bidang:'Kecakapan Hidup & Kewirausahaan', kegiatan:'Pelatihan keterampilan dan praktik kewirausahaan peserta didik',
-      sasaran:'Peserta didik kelas atas', waktu:'Setiap semester',
-      pj:'Guru Prakarya/Kewirausahaan', indikator:'Terlaksananya praktik kewirausahaan peserta didik' },
-    { kw:['sehat','jasmani','olahraga','sportif'],
-      misi:'Mengembangkan potensi jasmani dan pola hidup sehat peserta didik melalui kegiatan olahraga dan pembinaan kesehatan sekolah.',
-      tujuan:'Peserta didik memiliki kondisi fisik yang sehat dan menerapkan pola hidup sehat dalam kesehariannya.',
-      bidang:'Kesehatan & Olahraga', kegiatan:'Kegiatan UKS, senam bersama, dan pembinaan cabang olahraga',
-      sasaran:'Seluruh warga sekolah', waktu:'Setiap minggu',
-      pj:'Guru PJOK/Pembina UKS', indikator:'Meningkatnya kebugaran dan kesehatan warga sekolah' },
-    { kw:['gotong royong','peduli sosial','kepedulian','kerja sama','kolaborasi','toleransi'],
-      misi:'Menumbuhkan sikap gotong royong, kerja sama, dan kepedulian sosial peserta didik dalam kehidupan bermasyarakat.',
-      tujuan:'Peserta didik memiliki jiwa sosial yang tinggi, mampu bekerja sama, dan peduli terhadap sesama.',
-      bidang:'Hubungan Sosial', kegiatan:'Kegiatan gotong royong, bakti sosial, dan kerja sama antarwarga sekolah',
+      pj:'Tim Pengembang Kurikulum', indikator:'Bertambahnya karya kreatif/inovatif peserta didik yang dipamerkan atau dipublikasikan' },
+    { dimensi:'Kolaborasi', prinsip:'Bermakna',
+      kw:['kolaborasi','kerja sama','gotong royong','peduli sosial','kepedulian','sosial'],
+      misi:'Menumbuhkan sikap kolaboratif dan kepedulian sosial peserta didik melalui proyek kelompok lintas kelas yang bermakna bagi kehidupan bersama.',
+      tujuan:'Peserta didik mampu berkolaborasi lintas latar belakang, bekerja sama secara efektif, dan peduli terhadap sesama dalam menyelesaikan tugas bersama.',
+      bidang:'Hubungan Sosial & Kolaborasi', kegiatan:'Proyek kolaboratif lintas kelas/mata pelajaran dan kegiatan bakti sosial antarwarga sekolah',
       sasaran:'Seluruh warga sekolah', waktu:'Sesuai kalender kegiatan',
-      pj:'Wakil Kepala Sekolah Humas', indikator:'Terlaksananya kegiatan sosial secara rutin' },
+      pj:'Wakil Kepala Sekolah Humas', indikator:'Terlaksananya proyek kolaboratif secara rutin dan meningkatnya kualitas kerja sama peserta didik' },
+    { dimensi:'Kemandirian', prinsip:'Berkesadaran',
+      kw:['mandiri','kemandirian','wirausaha','kewirausahaan','entrepreneur','disiplin','tertib','tanggung jawab'],
+      misi:'Membentuk kemandirian dan tanggung jawab peserta didik melalui pembiasaan reflektif serta pembekalan kecakapan hidup yang kontekstual.',
+      tujuan:'Peserta didik memiliki kemandirian, disiplin, dan kesadaran penuh dalam mengelola proses belajar serta kehidupannya sendiri.',
+      bidang:'Kesiswaan & Kemandirian', kegiatan:'Pembiasaan reflektif harian, bimbingan konseling, dan pelatihan kecakapan hidup/kewirausahaan berbasis pengalaman nyata',
+      sasaran:'Seluruh peserta didik', waktu:'Sepanjang tahun ajaran',
+      pj:'Guru BK/Kesiswaan', indikator:'Meningkatnya kemandirian belajar dan menurunnya pelanggaran tata tertib peserta didik' },
+    { dimensi:'Kesehatan', prinsip:'Menggembirakan',
+      kw:['sehat','jasmani','olahraga','sportif','lingkungan','adiwiyata','hijau','ramah lingkungan'],
+      misi:'Mengembangkan pola hidup sehat serta kepedulian terhadap kelestarian lingkungan melalui kegiatan olahraga dan pembinaan kesehatan yang menyenangkan.',
+      tujuan:'Peserta didik memiliki kondisi fisik dan mental yang sehat, menerapkan pola hidup sehat, serta peduli pada kelestarian lingkungan.',
+      bidang:'Kesehatan, Olahraga & Lingkungan', kegiatan:'Kegiatan UKS, senam bersama, pembinaan cabang olahraga, dan program sekolah berbudaya lingkungan',
+      sasaran:'Seluruh warga sekolah', waktu:'Setiap minggu',
+      pj:'Guru PJOK/Pembina UKS', indikator:'Meningkatnya kebugaran, kesehatan, dan kesejahteraan (well-being) warga sekolah' },
+    { dimensi:'Komunikasi', prinsip:'Bermakna',
+      kw:['komunikasi','teknologi','digital','literasi digital','informasi','global','kompetitif','bersaing','internasional','berdaya saing'],
+      misi:'Mengintegrasikan kecakapan komunikasi dan literasi digital peserta didik melalui pemanfaatan teknologi dalam pembelajaran yang bermakna dan berwawasan global.',
+      tujuan:'Peserta didik mampu berkomunikasi secara efektif, memiliki kecakapan digital, dan mampu bersaing serta beradaptasi di tingkat nasional maupun global.',
+      bidang:'Sarana, Teknologi & Komunikasi', kegiatan:'Pelatihan literasi digital, praktik presentasi/publikasi karya, dan keikutsertaan dalam kompetisi/kerja sama luar sekolah',
+      sasaran:'Guru dan peserta didik', waktu:'Sepanjang tahun ajaran',
+      pj:'Koordinator TIK', indikator:'Meningkatnya kecakapan komunikasi peserta didik dan pemanfaatan TIK dalam pembelajaran' },
   ];
-  const ALWAYS_MISI = 'Melaksanakan pengelolaan sekolah yang transparan, partisipatif, dan akuntabel dengan melibatkan seluruh warga sekolah dan masyarakat.';
-  const ALWAYS_TUJUAN = 'Terwujudnya tata kelola sekolah yang transparan, partisipatif, dan akuntabel sesuai standar nasional pendidikan.';
-  const ALWAYS_PROGRAM = { bidang:'Manajemen & Tata Kelola', kegiatan:'Penyusunan RKS/RKAS, rapat evaluasi berkala, dan pelibatan komite sekolah',
+  const ALWAYS_MISI = 'Melaksanakan pengelolaan sekolah yang transparan, partisipatif, dan akuntabel sebagai ekosistem yang mendukung penerapan Pembelajaran Mendalam secara berkelanjutan.';
+  const ALWAYS_TUJUAN = 'Terwujudnya tata kelola sekolah yang transparan, partisipatif, dan akuntabel, serta ekosistem pembelajaran yang berkesadaran, bermakna, dan menggembirakan.';
+  const ALWAYS_PROGRAM = { bidang:'Manajemen & Tata Kelola', kegiatan:'Penyusunan RKS/RKAS berbasis kerangka Pembelajaran Mendalam, rapat evaluasi berkala, dan pelibatan komite sekolah',
     sasaran:'Kepala sekolah, guru, dan komite sekolah', waktu:'Setiap awal dan akhir semester',
-    pj:'Kepala Sekolah', indikator:'Tersusunnya dokumen perencanaan dan laporan sekolah tepat waktu' };
-  const FALLBACK_MISI = 'Menyelenggarakan proses pendidikan yang berkualitas untuk mewujudkan visi sekolah secara menyeluruh.';
-  const FALLBACK_TUJUAN = 'Terwujudnya visi sekolah melalui proses pendidikan yang bermutu dan berkelanjutan.';
-  const FALLBACK_PROGRAM = { bidang:'Umum', kegiatan:'Kegiatan pendukung pencapaian misi dan tujuan sekolah',
+    pj:'Kepala Sekolah', indikator:'Tersusunnya dokumen perencanaan dan laporan sekolah tepat waktu', prinsip:'Berkesadaran' };
+  const FALLBACK_MISI = 'Menyelenggarakan proses pembelajaran yang berkesadaran, bermakna, dan menggembirakan untuk mewujudkan visi sekolah dan Profil Lulusan secara menyeluruh.';
+  const FALLBACK_TUJUAN = 'Terwujudnya visi sekolah melalui proses pendidikan yang bermutu, berkelanjutan, dan selaras dengan kerangka Pembelajaran Mendalam.';
+  const FALLBACK_PROGRAM = { bidang:'Umum', kegiatan:'Kegiatan pendukung pencapaian misi dan tujuan sekolah berbasis prinsip Pembelajaran Mendalam',
     sasaran:'Seluruh warga sekolah', waktu:'Sepanjang tahun ajaran',
-    pj:'Tim Pelaksana', indikator:'Terlaksananya kegiatan sesuai rencana' };
+    pj:'Tim Pelaksana', indikator:'Terlaksananya kegiatan sesuai rencana', prinsip:'Bermakna' };
 
   function matchThemes(text){
     const low = text.toLowerCase();
@@ -489,7 +525,7 @@
       // pakai baris "selalu ada" bila cocok dengan misi tata kelola
       const useAlways = (state.misi[i]||'').includes('transparan') || (state.misi[i]||'').includes('akuntabel');
       const s = useAlways ? ALWAYS_PROGRAM : src;
-      rows.push({ bidang:s.bidang, kegiatan:s.kegiatan, sasaran:s.sasaran, waktu:s.waktu, pj:s.pj, indikator:s.indikator });
+      rows.push({ bidang:s.bidang, kegiatan:s.kegiatan, sasaran:s.sasaran, waktu:s.waktu, pj:s.pj, indikator:s.indikator, prinsip:s.prinsip||'' });
     }
     return rows;
   }
@@ -582,15 +618,29 @@
     const l = misiListEl.querySelectorAll('.item-text'); if(l.length) l[l.length-1].focus();
     markUnsaved();
   });
-  document.getElementById('addTujuan').addEventListener('click', () => {
-    // Utamakan tema yang sepadan dengan misi pada baris yang sama bila ada
-    const idx = state.tujuan.length;
-    const pairTheme = state.misi[idx] ? matchTheme(state.misi[idx]) : null;
-    const theme = pairTheme || nextUnusedTheme();
-    state.tujuan.push(theme ? theme.tujuan : '');
+  const addTujuanSelect = document.getElementById('addTujuanSelect');
+  (function populateAddTujuanSelect(){
+    const optDefault = document.createElement('option');
+    optDefault.value=''; optDefault.textContent='+ Tambah tujuan (pilih dimensi)'; optDefault.disabled=true; optDefault.selected=true;
+    addTujuanSelect.appendChild(optDefault);
+    const optBlank = document.createElement('option');
+    optBlank.value='__blank'; optBlank.textContent='Kosong (tulis manual)';
+    addTujuanSelect.appendChild(optBlank);
+    THEMES.forEach((t, idx) => {
+      const opt = document.createElement('option');
+      opt.value = String(idx); opt.textContent = t.dimensi;
+      addTujuanSelect.appendChild(opt);
+    });
+  })();
+  addTujuanSelect.addEventListener('change', () => {
+    const val = addTujuanSelect.value;
+    if(val === '') return;
+    const text = val === '__blank' ? '' : THEMES[parseInt(val,10)].tujuan;
+    state.tujuan.push(text);
     renderList(tujuanListEl, state.tujuan, 'tujuan');
     const l = tujuanListEl.querySelectorAll('.item-text'); if(l.length) l[l.length-1].focus();
     markUnsaved();
+    addTujuanSelect.value = '';
   });
 
   document.getElementById('btnGenerateVm').addEventListener('click', () => {
@@ -603,7 +653,7 @@
     state.misi = misi; state.tujuan = tujuan;
     renderVmInputs();
     markUnsaved();
-    showToast('Misi & tujuan terisi otomatis dari visi.');
+    showToast('Misi & tujuan terisi otomatis, dipetakan ke 8 Dimensi Profil Lulusan.');
   });
 
   document.getElementById('btnImport').addEventListener('click', () => document.getElementById('fileInput').click());
@@ -735,6 +785,22 @@
     return ta;
   }
 
+  function principleCell(value, onChange){
+    const sel = document.createElement('select');
+    sel.className = 'cell-select';
+    const optBlank = document.createElement('option');
+    optBlank.value = ''; optBlank.textContent = 'Pilih…';
+    sel.appendChild(optBlank);
+    PRINSIP_OPTIONS.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p; opt.textContent = p;
+      if(p === value) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener('change', () => { onChange(sel.value); markUnsaved(); });
+    return sel;
+  }
+
   function renderProgramRows(){
     pkBody.innerHTML = '';
     pkEmpty.style.display = state.programKerja.length ? 'none' : 'block';
@@ -748,6 +814,7 @@
       const tdWak = document.createElement('td'); tdWak.appendChild(cell(row.waktu,'Waktu','narrow',v=>row.waktu=v)); tr.appendChild(tdWak);
       const tdPj = document.createElement('td'); tdPj.appendChild(cell(row.pj,'Penanggung jawab','narrow',v=>row.pj=v)); tr.appendChild(tdPj);
       const tdInd = document.createElement('td'); tdInd.appendChild(cell(row.indikator,'Indikator keberhasilan','wide',v=>row.indikator=v)); tr.appendChild(tdInd);
+      const tdPrinsip = document.createElement('td'); tdPrinsip.appendChild(principleCell(row.prinsip||'', v=>row.prinsip=v)); tr.appendChild(tdPrinsip);
       const tdDel = document.createElement('td'); tdDel.className='del-col';
       const del = document.createElement('button'); del.className='item-del'; del.title='Hapus baris'; del.textContent='✕';
       del.addEventListener('click', () => { state.programKerja.splice(idx,1); renderProgramRows(); markUnsaved(); });
@@ -756,18 +823,36 @@
     });
   }
 
-  document.getElementById('addRow').addEventListener('click', () => {
-    // Coba isi otomatis dari pasangan Misi/Tujuan pada urutan yang sama, bila belum punya baris program
-    const idx = state.programKerja.length;
-    const combined = (state.misi[idx]||'') + ' ' + (state.tujuan[idx]||'');
-    const isTataKelola = (state.misi[idx]||'').includes('transparan') || (state.misi[idx]||'').includes('akuntabel');
-    const theme = isTataKelola ? ALWAYS_PROGRAM : (matchTheme(combined) || (combined.trim() ? FALLBACK_PROGRAM : null));
-    if(theme){
-      state.programKerja.push({ bidang:theme.bidang, kegiatan:theme.kegiatan, sasaran:theme.sasaran, waktu:theme.waktu, pj:theme.pj, indikator:theme.indikator });
-    } else {
-      state.programKerja.push({ bidang:'', kegiatan:'', sasaran:'', waktu:'', pj:'', indikator:'' });
+  const addRowSelect = document.getElementById('addRowSelect');
+  (function populateAddRowSelect(){
+    const optDefault = document.createElement('option');
+    optDefault.value=''; optDefault.textContent='+ Tambah baris (pilih dimensi)'; optDefault.disabled=true; optDefault.selected=true;
+    addRowSelect.appendChild(optDefault);
+    const optBlank = document.createElement('option');
+    optBlank.value='__blank'; optBlank.textContent='Kosong (isi manual)';
+    addRowSelect.appendChild(optBlank);
+    const optTk = document.createElement('option');
+    optTk.value='__tatakelola'; optTk.textContent='Manajemen & Tata Kelola';
+    addRowSelect.appendChild(optTk);
+    THEMES.forEach((t, idx) => {
+      const opt = document.createElement('option');
+      opt.value = String(idx); opt.textContent = t.dimensi;
+      addRowSelect.appendChild(opt);
+    });
+  })();
+  addRowSelect.addEventListener('change', () => {
+    const val = addRowSelect.value;
+    if(val === '') return;
+    let row;
+    if(val === '__blank') row = { bidang:'', kegiatan:'', sasaran:'', waktu:'', pj:'', indikator:'', prinsip:'' };
+    else if(val === '__tatakelola') row = { ...ALWAYS_PROGRAM };
+    else {
+      const t = THEMES[parseInt(val,10)];
+      row = { bidang:t.bidang, kegiatan:t.kegiatan, sasaran:t.sasaran, waktu:t.waktu, pj:t.pj, indikator:t.indikator, prinsip:t.prinsip };
     }
+    state.programKerja.push(row);
     renderProgramRows(); markUnsaved();
+    addRowSelect.value = '';
   });
 
   document.getElementById('btnGeneratePk').addEventListener('click', () => {
@@ -1027,7 +1112,9 @@
           state.visi = data.visi || '';
           state.misi = Array.isArray(data.misi) ? data.misi : [];
           state.tujuan = Array.isArray(data.tujuan) ? data.tujuan : [];
-          state.programKerja = Array.isArray(data.programKerja) ? data.programKerja : [];
+          state.programKerja = Array.isArray(data.programKerja)
+            ? data.programKerja.map(r => ({ prinsip:'', ...r }))
+            : [];
           state.rks = Array.isArray(data.rks) ? data.rks : [];
           statusEl.textContent = 'Tersimpan';
           statusEl.classList.add('saved');
@@ -1109,6 +1196,7 @@
         lines.push('   Waktu Pelaksanaan : ' + (r.waktu||'-'));
         lines.push('   Penanggung Jawab  : ' + (r.pj||'-'));
         lines.push('   Indikator         : ' + (r.indikator||'-'));
+        lines.push('   Prinsip PM        : ' + (r.prinsip||'-'));
       });
     }
     lines.push('');
