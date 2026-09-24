@@ -422,9 +422,31 @@
 
   const state = {
     namaSekolah:'', tahunAjaran:'', kepsek:'',
-    visi:'', misi:[], tujuan:[],
-    programKerja: [],   // { bidang, kegiatan, sasaran, waktu, pj, indikator, prinsip }
-    rks: []             // { program, sasaran, sumberDana, volume, satuan, harga, waktu, pj }
+    visi:'Terwujudnya peserta didik yang unggul dalam prestasi, sopan santun dalam bersikap, dan terampil dalam bekerja.',
+    misi:[
+      'Menyelenggarakan pembelajaran bermutu yang mendorong peserta didik berpikir kritis dan berprestasi sesuai potensi serta minatnya.',
+      'Menumbuhkan akhlak mulia dan sikap sopan santun peserta didik melalui keteladanan, pembiasaan, dan penguatan pendidikan karakter dalam keseharian di sekolah.',
+      'Membekali peserta didik dengan kecakapan hidup dan keterampilan kerja melalui pembelajaran berbasis pengalaman nyata.',
+      'Melaksanakan pengelolaan sekolah yang transparan, partisipatif, dan akuntabel untuk mendukung tercapainya visi sekolah secara berkelanjutan.'
+    ],
+    tujuan:[
+      'Peserta didik mampu berpikir kritis, mengembangkan potensi akademiknya, dan meraih prestasi baik di sekolah maupun di ajang lomba/kompetisi.',
+      'Peserta didik terbiasa bersikap sopan santun dan berakhlak mulia dalam berinteraksi dengan sesama warga sekolah dan masyarakat.',
+      'Peserta didik memiliki keterampilan kerja dan kecakapan hidup yang relevan sehingga siap memasuki dunia kerja atau melanjutkan pendidikan.',
+      'Terwujudnya tata kelola sekolah yang transparan, partisipatif, dan akuntabel yang mendukung pencapaian visi sekolah.'
+    ],
+    programKerja: [
+      { bidang:'Kurikulum & Akademik', kegiatan:'Pembelajaran berbasis masalah, program pengayaan, bimbingan olimpiade/lomba, dan Gerakan Literasi Sekolah', sasaran:'Seluruh peserta didik', waktu:'Setiap semester', pj:'Wakil Kepala Sekolah Kurikulum', indikator:'Meningkatnya rata-rata nilai akademik dan jumlah prestasi/kejuaraan yang diraih peserta didik', prinsip:'Bermakna' },
+      { bidang:'Kesiswaan & Karakter', kegiatan:'Pembiasaan 5S (senyum, salam, sapa, sopan, santun), penguatan pendidikan karakter, dan keteladanan guru dalam bersikap', sasaran:'Seluruh warga sekolah', waktu:'Setiap hari', pj:'Wakil Kepala Sekolah Kesiswaan', indikator:'Menurunnya pelanggaran tata tertib dan meningkatnya sikap sopan santun peserta didik', prinsip:'Bermakna' },
+      { bidang:'Kecakapan Hidup & Keterampilan Kerja', kegiatan:'Pelatihan keterampilan vokasi/kecakapan hidup, praktik kerja/magang, dan kerja sama dengan Dunia Usaha-Dunia Industri (DUDI)', sasaran:'Peserta didik kelas akhir', waktu:'Semester genap', pj:'Wakil Kepala Sekolah Humas', indikator:'Jumlah peserta didik yang mengikuti pelatihan keterampilan/magang dan siap kerja', prinsip:'Berkesadaran' },
+      { bidang:'Manajemen & Tata Kelola', kegiatan:'Penyusunan RKS/RKAS secara partisipatif, rapat evaluasi berkala, dan pelibatan komite sekolah', sasaran:'Kepala sekolah, guru, dan komite sekolah', waktu:'Setiap awal dan akhir semester', pj:'Kepala Sekolah', indikator:'Tersusunnya dokumen perencanaan dan laporan sekolah tepat waktu', prinsip:'Berkesadaran' }
+    ],
+    rks: [
+      { program:'Pembelajaran berbasis masalah, program pengayaan, bimbingan olimpiade/lomba, dan Gerakan Literasi Sekolah', sasaran:'Seluruh peserta didik', sumberDana:'BOS Reguler', volume:2, satuan:'Kegiatan', harga:0, waktu:'Semester ganjil & genap', pj:'Wakil Kepala Sekolah Kurikulum' },
+      { program:'Pembiasaan 5S dan penguatan pendidikan karakter', sasaran:'Seluruh warga sekolah', sumberDana:'BOS Reguler', volume:1, satuan:'Paket kegiatan', harga:0, waktu:'Sepanjang tahun ajaran', pj:'Wakil Kepala Sekolah Kesiswaan' },
+      { program:'Pelatihan keterampilan kerja/magang kerja sama DUDI', sasaran:'Peserta didik kelas akhir', sumberDana:'Komite Sekolah', volume:1, satuan:'Kegiatan', harga:0, waktu:'Semester genap', pj:'Wakil Kepala Sekolah Humas' },
+      { program:'Penyusunan RKS/RKAS dan rapat evaluasi tata kelola', sasaran:'Kepala sekolah, guru, komite sekolah', sumberDana:'BOS Reguler', volume:2, satuan:'Kegiatan', harga:0, waktu:'Awal & akhir semester', pj:'Kepala Sekolah' }
+    ]
   };
 
   // ---------- kamus tema: visi -> misi/tujuan, dipetakan ke 8 Dimensi Profil Lulusan
