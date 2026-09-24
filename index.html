@@ -10,10 +10,10 @@
   :root{
     --paper:#F6F2E8;
     --card:#FFFFFF;
-    --ink:#232722;
-    --ink-soft:#5B6058;
+    --ink:#121512;
+    --ink-soft:#3E443E;
     --navy:#1C3A4B;
-    --navy-deep:#12262F;
+    --navy-deep:#0A1216;
     --gold:#A9822F;
     --gold-soft:#E9DCB8;
     --sage:#42624B;
@@ -422,29 +422,33 @@
 
   const state = {
     namaSekolah:'', tahunAjaran:'', kepsek:'',
-    visi:'Terwujudnya peserta didik yang unggul dalam prestasi, sopan santun dalam bersikap, dan terampil dalam bekerja.',
+    visi:'Membentuk peserta didik yang unggul dalam kompetisi, terampil dalam teknologi, sopan dalam bersikap, dan santun dalam berbudaya, serta menjadi insan beriman dan bertaqwa yang kuat.',
     misi:[
-      'Menyelenggarakan pembelajaran bermutu yang mendorong peserta didik berpikir kritis dan berprestasi sesuai potensi serta minatnya.',
-      'Menumbuhkan akhlak mulia dan sikap sopan santun peserta didik melalui keteladanan, pembiasaan, dan penguatan pendidikan karakter dalam keseharian di sekolah.',
-      'Membekali peserta didik dengan kecakapan hidup dan keterampilan kerja melalui pembelajaran berbasis pengalaman nyata.',
+      'Menumbuhkan keimanan dan ketakwaan peserta didik yang kuat melalui pembiasaan ibadah dan olah hati yang berkesadaran.',
+      'Menumbuhkan sikap sopan santun dan akhlak mulia peserta didik, baik dalam bersikap maupun dalam melestarikan budaya yang baik, melalui keteladanan dan pembiasaan.',
+      'Menyelenggarakan pembelajaran bermutu yang mendorong peserta didik unggul dan berdaya saing dalam berbagai kompetisi akademik maupun non-akademik.',
+      'Membekali peserta didik dengan keterampilan teknologi dan literasi digital melalui pembelajaran yang memanfaatkan teknologi secara kreatif dan bertanggung jawab.',
       'Melaksanakan pengelolaan sekolah yang transparan, partisipatif, dan akuntabel untuk mendukung tercapainya visi sekolah secara berkelanjutan.'
     ],
     tujuan:[
-      'Peserta didik mampu berpikir kritis, mengembangkan potensi akademiknya, dan meraih prestasi baik di sekolah maupun di ajang lomba/kompetisi.',
-      'Peserta didik terbiasa bersikap sopan santun dan berakhlak mulia dalam berinteraksi dengan sesama warga sekolah dan masyarakat.',
-      'Peserta didik memiliki keterampilan kerja dan kecakapan hidup yang relevan sehingga siap memasuki dunia kerja atau melanjutkan pendidikan.',
+      'Peserta didik memiliki keimanan dan ketakwaan yang kuat serta mampu mengamalkan nilai-nilai agama dengan kesadaran penuh dalam kehidupan sehari-hari.',
+      'Peserta didik terbiasa bersikap sopan santun dan berakhlak mulia dalam interaksi sehari-hari maupun dalam menjaga budaya yang baik di lingkungan sekolah.',
+      'Peserta didik mampu bersaing dan meraih prestasi unggul dalam berbagai kompetisi/lomba akademik maupun non-akademik sesuai potensi dan minatnya.',
+      'Peserta didik terampil memanfaatkan teknologi dan memiliki literasi digital yang memadai untuk mendukung proses belajar dan kehidupannya.',
       'Terwujudnya tata kelola sekolah yang transparan, partisipatif, dan akuntabel yang mendukung pencapaian visi sekolah.'
     ],
     programKerja: [
-      { bidang:'Kurikulum & Akademik', kegiatan:'Pembelajaran berbasis masalah, program pengayaan, bimbingan olimpiade/lomba, dan Gerakan Literasi Sekolah', sasaran:'Seluruh peserta didik', waktu:'Setiap semester', pj:'Wakil Kepala Sekolah Kurikulum', indikator:'Meningkatnya rata-rata nilai akademik dan jumlah prestasi/kejuaraan yang diraih peserta didik', prinsip:'Bermakna' },
-      { bidang:'Kesiswaan & Karakter', kegiatan:'Pembiasaan 5S (senyum, salam, sapa, sopan, santun), penguatan pendidikan karakter, dan keteladanan guru dalam bersikap', sasaran:'Seluruh warga sekolah', waktu:'Setiap hari', pj:'Wakil Kepala Sekolah Kesiswaan', indikator:'Menurunnya pelanggaran tata tertib dan meningkatnya sikap sopan santun peserta didik', prinsip:'Bermakna' },
-      { bidang:'Kecakapan Hidup & Keterampilan Kerja', kegiatan:'Pelatihan keterampilan vokasi/kecakapan hidup, praktik kerja/magang, dan kerja sama dengan Dunia Usaha-Dunia Industri (DUDI)', sasaran:'Peserta didik kelas akhir', waktu:'Semester genap', pj:'Wakil Kepala Sekolah Humas', indikator:'Jumlah peserta didik yang mengikuti pelatihan keterampilan/magang dan siap kerja', prinsip:'Berkesadaran' },
-      { bidang:'Manajemen & Tata Kelola', kegiatan:'Penyusunan RKS/RKAS secara partisipatif, rapat evaluasi berkala, dan pelibatan komite sekolah', sasaran:'Kepala sekolah, guru, dan komite sekolah', waktu:'Setiap awal dan akhir semester', pj:'Kepala Sekolah', indikator:'Tersusunnya dokumen perencanaan dan laporan sekolah tepat waktu', prinsip:'Berkesadaran' }
+      { bidang:'Keagamaan', kegiatan:'Pembiasaan ibadah reflektif harian (salat berjamaah, tadarus, doa bersama) disertai jurnal refleksi spiritual peserta didik', sasaran:'Seluruh peserta didik dan guru', waktu:'Setiap hari / sesuai kalender keagamaan', pj:'Guru PAI', indikator:'Minimal 90% peserta didik mengisi jurnal refleksi ibadah secara rutin tiap semester', prinsip:'Berkesadaran' },
+      { bidang:'Kesiswaan & Karakter (Budaya Sopan Santun)', kegiatan:'Pembiasaan 5S (senyum, salam, sapa, sopan, santun), penguatan pendidikan karakter, dan pelestarian budaya sopan santun dalam kegiatan sekolah', sasaran:'Seluruh warga sekolah', waktu:'Setiap hari', pj:'Wakil Kepala Sekolah Kesiswaan', indikator:'Menurunnya pelanggaran tata tertib dan meningkatnya sikap sopan santun peserta didik', prinsip:'Bermakna' },
+      { bidang:'Kurikulum & Prestasi', kegiatan:'Pembelajaran berbasis masalah, program pengayaan, dan pembinaan intensif tim lomba/kompetisi', sasaran:'Seluruh peserta didik, fokus tim lomba', waktu:'Setiap semester, intensif menjelang kompetisi', pj:'Wakil Kepala Sekolah Kurikulum', indikator:'Jumlah kejuaraan kompetisi meningkat dibanding tahun sebelumnya', prinsip:'Bermakna' },
+      { bidang:'Teknologi & Literasi Digital', kegiatan:'Pelatihan literasi digital, pemanfaatan TIK dalam pembelajaran, dan praktik keterampilan teknologi terapan', sasaran:'Guru dan peserta didik', waktu:'Sepanjang tahun ajaran', pj:'Koordinator TIK', indikator:'Minimal 1 pelatihan/praktik TIK per semester dan meningkatnya pemanfaatan TIK dalam KBM', prinsip:'Bermakna' },
+      { bidang:'Manajemen & Tata Kelola', kegiatan:'Penyusunan RKS/RKAS secara partisipatif dan rapat evaluasi berkala', sasaran:'Kepala sekolah, guru, dan komite sekolah', waktu:'Setiap awal dan akhir semester', pj:'Kepala Sekolah', indikator:'Dokumen perencanaan dan laporan sekolah tersusun tepat waktu 100% tiap semester', prinsip:'Berkesadaran' }
     ],
     rks: [
-      { program:'Pembelajaran berbasis masalah, program pengayaan, bimbingan olimpiade/lomba, dan Gerakan Literasi Sekolah', sasaran:'Seluruh peserta didik', sumberDana:'BOS Reguler', volume:2, satuan:'Kegiatan', harga:0, waktu:'Semester ganjil & genap', pj:'Wakil Kepala Sekolah Kurikulum' },
-      { program:'Pembiasaan 5S dan penguatan pendidikan karakter', sasaran:'Seluruh warga sekolah', sumberDana:'BOS Reguler', volume:1, satuan:'Paket kegiatan', harga:0, waktu:'Sepanjang tahun ajaran', pj:'Wakil Kepala Sekolah Kesiswaan' },
-      { program:'Pelatihan keterampilan kerja/magang kerja sama DUDI', sasaran:'Peserta didik kelas akhir', sumberDana:'Komite Sekolah', volume:1, satuan:'Kegiatan', harga:0, waktu:'Semester genap', pj:'Wakil Kepala Sekolah Humas' },
+      { program:'Pembiasaan ibadah reflektif harian dan jurnal refleksi spiritual', sasaran:'Seluruh peserta didik dan guru', sumberDana:'BOS Reguler', volume:1, satuan:'Paket kegiatan', harga:0, waktu:'Sepanjang tahun ajaran', pj:'Guru PAI' },
+      { program:'Pembiasaan 5S dan penguatan karakter/budaya sopan santun', sasaran:'Seluruh warga sekolah', sumberDana:'BOS Reguler', volume:1, satuan:'Paket kegiatan', harga:0, waktu:'Sepanjang tahun ajaran', pj:'Wakil Kepala Sekolah Kesiswaan' },
+      { program:'Pengayaan dan pembinaan tim lomba/kompetisi', sasaran:'Seluruh peserta didik, fokus tim lomba', sumberDana:'BOS Reguler', volume:2, satuan:'Kegiatan', harga:0, waktu:'Semester ganjil & genap', pj:'Wakil Kepala Sekolah Kurikulum' },
+      { program:'Pelatihan literasi digital dan pemanfaatan TIK', sasaran:'Guru dan peserta didik', sumberDana:'BOS Reguler', volume:2, satuan:'Kegiatan', harga:0, waktu:'Semester ganjil & genap', pj:'Koordinator TIK' },
       { program:'Penyusunan RKS/RKAS dan rapat evaluasi tata kelola', sasaran:'Kepala sekolah, guru, komite sekolah', sumberDana:'BOS Reguler', volume:2, satuan:'Kegiatan', harga:0, waktu:'Awal & akhir semester', pj:'Kepala Sekolah' }
     ]
   };
@@ -475,7 +479,7 @@
       sasaran:'Seluruh peserta didik', waktu:'Setiap semester',
       pj:'Wakil Kepala Sekolah Kurikulum', indikator:'Meningkatnya kemampuan bernalar kritis dan rata-rata capaian akademik peserta didik' },
     { dimensi:'Kreativitas', prinsip:'Menggembirakan',
-      kw:['kreatif','inovatif','inovasi','kreativitas','seni','budaya','kearifan lokal'],
+      kw:['kreatif','inovatif','inovasi','kreativitas','seni','seni budaya','kearifan lokal'],
       misi:'Mengembangkan budaya berpikir kreatif dan inovatif peserta didik melalui pengalaman belajar berbasis proyek yang menantang sekaligus menggembirakan.',
       tujuan:'Peserta didik mampu berpikir kreatif, inovatif, dan menghasilkan karya orisinal sebagai solusi atas persoalan nyata di sekitarnya.',
       bidang:'Inovasi Pembelajaran & Seni Budaya', kegiatan:'Pembelajaran berbasis proyek, pentas seni budaya, dan unjuk karya kreatif peserta didik',
@@ -544,6 +548,8 @@
   function generateProgramFromMisi(){
     const n = Math.max(state.misi.length, state.tujuan.length);
     const rows = [];
+    const usedThemes = new Set();
+    let alwaysAdded = false;
     for(let i=0;i<n;i++){
       const combined = (state.misi[i]||'') + ' ' + (state.tujuan[i]||'');
       const theme = matchTheme(combined);
@@ -551,8 +557,18 @@
       if(!src) continue;
       // pakai baris "selalu ada" bila cocok dengan misi tata kelola
       const useAlways = (state.misi[i]||'').includes('transparan') || (state.misi[i]||'').includes('akuntabel');
-      const s = useAlways ? ALWAYS_PROGRAM : src;
-      rows.push({ bidang:s.bidang, kegiatan:s.kegiatan, sasaran:s.sasaran, waktu:s.waktu, pj:s.pj, indikator:s.indikator, prinsip:s.prinsip||'' });
+      if(useAlways){
+        if(alwaysAdded) continue; // jangan duplikasi baris tata kelola
+        alwaysAdded = true;
+        rows.push({ bidang:ALWAYS_PROGRAM.bidang, kegiatan:ALWAYS_PROGRAM.kegiatan, sasaran:ALWAYS_PROGRAM.sasaran, waktu:ALWAYS_PROGRAM.waktu, pj:ALWAYS_PROGRAM.pj, indikator:ALWAYS_PROGRAM.indikator, prinsip:ALWAYS_PROGRAM.prinsip||'' });
+        continue;
+      }
+      // jangan tambahkan tema yang sama dua kali (mis. dua kalimat misi cocok tema yang sama)
+      if(theme){
+        if(usedThemes.has(theme)) continue;
+        usedThemes.add(theme);
+      }
+      rows.push({ bidang:src.bidang, kegiatan:src.kegiatan, sasaran:src.sasaran, waktu:src.waktu, pj:src.pj, indikator:src.indikator, prinsip:src.prinsip||'' });
     }
     return rows;
   }
